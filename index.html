@@ -2,497 +2,387 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZIPPER Change Consultancy — Human-Side AI Adoption Strategy</title>
-<meta name="description" content="Adoption strategy for AI and technology consultancies whose clients need more than a successful go-live. Alongside your team, or quietly under your brand.">
+<meta name="description" content="Adoption strategy for AI and technology consultancies whose clients need more than a successful go-live.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* ===== BRAND PALETTE ===== */
-  --red-pigment:#CC3525;      /* RED PIGMENT — primary accent, CTAs */
-  --absolute:#000000;         /* ABSOLUTE — primary dark */
-  --almond:#F5EFE0;           /* ALMOND CANVAS — warm section backgrounds */
-  --ash:#DDE3EA;              /* ASH SILK — cool section backgrounds, cards */
-  --cold-velvet:#9DB2C6;      /* COLD VELVET — muted structural / secondary */
+  --y:#FFF100;          /* signal yellow */
+  --y-soft:#FFF8A6;
+  --blue:#1B3BE5;       /* signal blue */
+  --blue-soft:#DCE3FF;
+  --ink:#111111;        /* black */
   --white:#FFFFFF;
-
-  /* Working tokens */
-  --red-bright:#E64A38;       /* Red on dark, slightly brighter */
-  --red-deep:#A02818;         /* Hover state */
-  --red-tint:#FBE8E4;         /* Soft red callout background */
-  --charcoal:#000000;         /* Body text — absolute */
-  --grey-muted:#5A5A5A;       /* Secondary muted text */
-  --grey-line:#C8CFD6;        /* Borders that read on almond + ash */
-  --grey-card:#DDE3EA;        /* → ash */
-  --grey-cool:#DDE3EA;
-  --grey-warm:#F5EFE0;
-
-  /* Legacy variable aliases — keep the design system working */
-  --navy:#000000;
-  --navy-deep:#000000;
-  --slate:#1A1A1A;
-  --slate-mid:#3A3A3A;
-  --slate-light:#9DB2C6;
-  --ink:#000000;
-  --green:#9DB2C6;            /* → cold-velvet (subtle structural markers) */
-  --green-dark:#000000;
-  --accent:#CC3525;           /* → red-pigment */
-  --accent-bright:#E64A38;
-  --accent-deep:#A02818;
-  --accent-tint:#FBE8E4;
-  --burgundy:#3A3A3A;
-  --grey-soft:#F5EFE0;        /* → almond */
-  --green-tint:#DDE3EA;
-  --teal:#9DB2C6;
-  --gold:#CC3525;
-  --gold-bright:#E64A38;
-  --gold-deep:#A02818;
-  --gold-tint:#FBE8E4;
-
-  --max:1180px;
+  --grey:#EDEDEA;       /* tile grey */
+  --grey-2:#F6F6F3;
+  --line:#DADAD5;
+  --muted:#5E5E5A;
+  --wrap:1180px;
+  --gutter:22px;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'Archivo',system-ui,-apple-system,sans-serif;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{font-family:'Archivo',-apple-system,sans-serif;color:var(--charcoal);background:var(--white);font-size:18.5px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 body.nav-open{overflow:hidden;}
 img,video,svg{display:block;max-width:100%;}
-a{text-decoration:none;color:inherit;}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 40px;}
-@media(max-width:640px){.wrap{padding:0 22px;}}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter);}
+@media(min-width:768px){:root{--gutter:40px;}}
+h1,h2,h3{font-weight:400;letter-spacing:-0.025em;line-height:1.08;text-wrap:balance;}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;}
+.tile-label{display:block;margin-bottom:22px;}
 
-/* type */
-h1,h2,h3{font-weight:400;letter-spacing:-0.025em;line-height:1.12;color:var(--ink);}
-h3{font-weight:500;}
-h1,h2{text-wrap:balance;}
-.eyebrow{font-family:'Archivo',sans-serif;font-size:14px;letter-spacing:.04em;color:var(--charcoal);display:flex;align-items:center;gap:8px;}
-.eyebrow::before{content:"//";color:var(--green);font-weight:500;}
-.eyebrow.u{display:inline-block;font-family:'Archivo',sans-serif;font-size:15px;font-weight:600;color:var(--green-dark);border-bottom:1.5px solid var(--accent);padding-bottom:3px;letter-spacing:.01em;}
-.eyebrow.u::before{content:none;}
+/* "LABEL ——" link (Engine) */
+.line-link{display:inline-flex;align-items:center;gap:16px;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;min-height:44px;}
+.line-link::after{content:"";width:48px;height:1.5px;background:currentColor;transition:width .35s cubic-bezier(.65,0,.35,1);}
+.line-link:hover::after{width:84px;}
+/* "→ Learn more" link (Plethora) */
+.arrow-link{display:inline-flex;align-items:center;gap:10px;font-size:14px;min-height:44px;}
+.arrow-link span{transition:transform .3s ease;}
+.arrow-link:hover span{transform:translateX(5px);}
 
-/* buttons — mobile-first, wrap freely, full width on phones */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:16px;font-weight:600;padding:14px 22px;letter-spacing:.01em;cursor:pointer;border:none;overflow:hidden;z-index:0;transition:color .35s cubic-bezier(.4,0,.2,1),border-color .35s ease;width:100%;text-align:center;white-space:normal;line-height:1.35;min-height:48px;}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:14px 26px;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--ink);cursor:pointer;width:100%;text-align:center;transition:background .25s ease,color .25s ease;}
 @media(min-width:640px){.btn{width:auto;}}
-.btn::before{content:"";position:absolute;inset:0;z-index:-1;transform:translateX(-101%);transition:transform .4s cubic-bezier(.65,0,.35,1);}
-.btn:hover::before{transform:translateX(0);}
-.btn::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:35%;z-index:-1;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-18deg);transition:left .55s ease;}
-.btn:hover::after{left:120%;}
-.btn .arr{font-family:'Archivo',sans-serif;font-weight:400;transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
-.btn:hover .arr{transform:translateX(6px);}
-.btn:active{transform:scale(.97);}
-.btn-light{background:var(--white);color:var(--ink);}
-.btn-light::before{background:var(--accent);}
-.btn-light:hover{color:#fff;}
-.btn-green{background:var(--accent);color:#fff;}
-.btn-green::before{background:var(--green-dark);}
-.btn-dark{background:var(--ink);color:#fff;padding:12px 20px;font-size:15px;min-height:44px;}
-.btn-dark::before{background:var(--accent);}
-.btn-outline{background:transparent;color:var(--ink);border:1px solid var(--charcoal);}
-.btn-outline::before{background:var(--ink);}
-.btn-outline:hover{color:#fff;border-color:var(--ink);}
-.btn-ghost-light{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45);}
-.btn-ghost-light::before{background:#fff;}
-.btn-ghost-light:hover{color:var(--ink);border-color:#fff;}
+.btn-black{background:var(--blue);color:#fff;border-color:var(--blue);}
+.btn-black:hover{background:transparent;color:var(--blue);}
+.btn-ghost{background:transparent;color:var(--ink);}
+.btn-ghost:hover{background:var(--blue);color:#fff;}
+.btn-yellow{background:var(--y);color:var(--ink);border-color:var(--y);}
+.btn-yellow:hover{background:transparent;color:var(--y);}
+.btn-blue{background:var(--blue);color:#fff;border-color:var(--blue);}
+.btn-blue:hover{background:transparent;color:var(--blue);}
 
-/* ============ NAV ============ */
-nav{position:absolute;top:0;left:0;right:0;z-index:20;}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;max-width:1320px;margin:0 auto;gap:20px;}
-@media(max-width:640px){.nav-inner{padding:18px 22px;}}
-.logo{display:flex;align-items:center;color:#fff;}
-.logo img{height:126px;width:auto;display:block;}
-@media(max-width:640px){.logo img{height:102px;}}
-.nav-links{display:none;gap:28px;font-size:15.5px;font-weight:500;color:rgba(255,255,255,.85);}
-.nav-links a{padding:8px 0;transition:color .2s ease;}
-.nav-links a:hover{color:var(--accent-bright);}
-.nav-cta-desktop{display:none;}
+/* ============ ZIPPER READ-MORE (brand device) ============ */
+.zip-body{overflow:hidden;transition:max-height .7s cubic-bezier(.4,0,.2,1);}
+.zip:not(.open) .zip-body{-webkit-mask-image:linear-gradient(180deg,#000 45%,transparent 100%);mask-image:linear-gradient(180deg,#000 45%,transparent 100%);}
+.zip-toggle{display:inline-flex;align-items:center;gap:0;background:none;border:none;padding:4px 0;margin-top:10px;cursor:pointer;min-height:44px;}
+.zip-track{position:relative;width:102px;height:102px;flex-shrink:0;}
+.ph-zip{position:relative;width:34px;height:34px;flex-shrink:0;}
+.zip-pull{position:absolute;left:50%;top:50%;width:102px;height:102px;transform:translate(-50%,-50%);transition:transform .4s cubic-bezier(.65,0,.35,1);}
+.ph-pull{position:absolute;left:50%;top:50%;width:34px;height:34px;transform:translate(-50%,-50%);transition:transform .4s cubic-bezier(.65,0,.35,1);}
+.zip-pull img,.ph-pull img{width:100%;height:100%;object-fit:contain;}
+.zip-pull .zip-glyph{display:block;width:100%;height:100%;background:var(--blue);-webkit-mask:url(https://cdn.katalyst-crm.com/a/536c33bf-57ea-a432-acae-df1e29843262) center/contain no-repeat;mask:url(https://cdn.katalyst-crm.com/a/536c33bf-57ea-a432-acae-df1e29843262) center/contain no-repeat;}
+.zip-label{display:none;}
+
+/* ============ TOP BAR + NAV ============ */
+/* ============ FLOATING NAV ============ */
+.topbar{display:none;}
+.nav{position:absolute;top:0;left:0;right:0;z-index:30;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;padding:22px var(--gutter);}
+@media(min-width:900px){.nav-inner{padding-left:max(var(--gutter),calc((100vw - var(--wrap))/4 + var(--gutter)));padding-right:max(var(--gutter),calc((100vw - var(--wrap))/2 + var(--gutter)));}}
+.logo{display:inline-flex;align-items:center;}
+.logo img{height:108px;width:auto;filter:brightness(0) invert(1);}
+@media(min-width:960px){.logo img{height:128px;}}
+.nav-links{display:none;}
 @media(min-width:960px){
-  .nav-links{display:flex;}
-  .nav-cta-desktop{display:inline-flex;}
-  .nav-hamburger{display:none;}
+  .nav-links{display:flex;gap:34px;}
+  .nav-links a{font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s;}
+  .nav-links a:hover{border-color:var(--y);color:var(--y);}
 }
-
-/* hamburger */
-.nav-hamburger{background:transparent;border:1px solid rgba(255,255,255,.4);width:48px;height:48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;padding:0;transition:border-color .2s ease;z-index:31;position:relative;}
-.nav-hamburger:hover{border-color:#fff;}
-.nav-hamburger span{display:block;width:20px;height:2px;background:#fff;transition:transform .3s ease, opacity .2s ease;}
-.nav-hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.nav-hamburger.is-open span:nth-child(2){opacity:0;}
-.nav-hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-/* mobile menu overlay */
-.mobile-menu{position:fixed;inset:0;background:var(--ink);z-index:25;padding:100px 30px 40px;display:flex;flex-direction:column;gap:0;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);}
-.mobile-menu.open{transform:translateX(0);}
-.mobile-menu a.mm-link{display:block;padding:20px 0;font-size:22px;font-weight:500;color:#fff;border-bottom:1px solid rgba(255,255,255,.12);letter-spacing:-0.015em;min-height:56px;}
-.mobile-menu a.mm-link:hover{color:var(--accent-bright);}
-.mobile-menu .btn{margin-top:32px;}
+.nav-cta{display:none;}
+@media(min-width:960px){
+  .nav-cta{display:inline-flex;align-items:center;min-height:44px;padding:11px 22px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:var(--y);border:2px solid var(--y);transition:background .25s,color .25s;}
+  .nav-cta:hover{background:transparent;color:var(--y);}
+}
+.hamburger{width:48px;height:48px;background:transparent;border:1.5px solid rgba(255,255,255,.55);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;position:relative;z-index:41;transition:border-color .2s;}
+.hamburger span{width:20px;height:2px;background:#fff;transition:transform .3s,opacity .2s,background .2s;}
+.hamburger.is-open{border-color:var(--ink);}
+.hamburger.is-open span{background:var(--ink);}
+.hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.is-open span:nth-child(2){opacity:0;}
+.hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(min-width:960px){.hamburger{display:none;}}
+.mobile-menu{position:fixed;inset:0;background:var(--y);z-index:40;padding:110px 26px 40px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;}
+.mobile-menu.open{transform:none;}
+.mobile-menu a.mm{font-size:28px;font-weight:600;letter-spacing:-0.02em;padding:16px 0;border-bottom:1.5px solid var(--ink);min-height:56px;}
+.mobile-menu .btn{margin-top:30px;}
 @media(min-width:960px){.mobile-menu{display:none;}}
 
-/* ============ 1. HERO ============ */
-.hero{position:relative;background:var(--ink);color:#fff;min-height:118vh;min-height:118svh;display:flex;flex-direction:column;}
-.hero-bg{position:absolute;inset:0;overflow:hidden;background:var(--absolute);}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
-/* Aurora — Cold Velvet + Red Pigment glows over Absolute black */
-.hero-aurora{position:absolute;inset:-15% -10%;pointer-events:none;background:
-  radial-gradient(45% 55% at 24% 40%, rgba(157,178,198,.34) 0%, transparent 65%),
-  radial-gradient(35% 45% at 78% 30%, rgba(204,53,37,.18) 0%, transparent 60%),
-  radial-gradient(55% 45% at 60% 82%, rgba(58,58,58,.42) 0%, transparent 60%);
-  filter:blur(72px);opacity:.78;mix-blend-mode:screen;
-  animation:aurora-sweep 30s ease-in-out infinite alternate;}
-@keyframes aurora-sweep{
-  0%{transform:translate(-3%,-2%) scale(1);}
-  100%{transform:translate(3%,2%) scale(1.08);}
+/* ============ HERO (full-bleed image) ============ */
+.hero{position:relative;min-height:600px;display:flex;align-items:center;overflow:hidden;}
+@media(min-width:900px){.hero{min-height:100vh;}}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;z-index:0;}
+.hero-scrim{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(90deg, rgba(10,22,90,.92) 0%, rgba(13,28,110,.78) 38%, rgba(13,28,110,.25) 70%, rgba(13,28,110,.05) 100%),
+  linear-gradient(0deg, rgba(8,18,76,.55) 0%, rgba(8,18,76,0) 40%);}
+.hero-inner{position:relative;z-index:2;color:#fff;padding:120px var(--gutter) 150px;width:100%;}
+@media(min-width:900px){.hero-inner{padding:150px var(--gutter) 180px;padding-left:max(var(--gutter),calc((100vw - var(--wrap))/4 + var(--gutter)));}}
+.hero-kicker{margin-bottom:26px;color:var(--y);}
+.hero h1{font-size:clamp(40px,6vw,80px);font-weight:300;line-height:1.02;max-width:900px;text-shadow:0 2px 24px rgba(5,12,50,.35);}
+.hero h1 b{font-weight:800;display:block;}
+.hero-lead{font-size:clamp(17px,1.6vw,20px);line-height:1.6;max-width:500px;margin:28px 0 38px;color:rgba(255,255,255,.92);}
+.hero-actions{display:flex;flex-direction:column;gap:14px;align-items:stretch;}
+@media(min-width:640px){.hero-actions{flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px;}}
+.btn-hero-ghost{background:transparent;color:#fff;border-color:#fff;}
+.btn-hero-ghost:hover{background:#fff;color:var(--blue);}
+
+/* client strip — floats over the hero image, no fill */
+.logos{background:transparent;color:#fff;padding:22px 0 26px;overflow:hidden;}
+.hero-logos{position:absolute;left:0;right:0;bottom:0;z-index:2;padding-bottom:28px;}
+.logos-label{text-align:center;margin-bottom:18px;padding:0 var(--gutter);color:rgba(255,255,255,.85);}
+.track{display:flex;align-items:center;width:max-content;gap:72px;padding-left:72px;animation:slide 46s linear infinite;}
+.track img{height:44px;width:auto;max-width:160px;object-fit:contain;filter:brightness(0) invert(1);opacity:.92;flex-shrink:0;}
+.track img[src*="29fe9007"],.track img[src*="89cce2a3"],.track img[src*="9a49a50d"]{height:32px;max-width:120px;}
+@media(min-width:768px){.track{gap:110px;padding-left:110px;}.track img{height:60px;max-width:200px;}.track img[src*="29fe9007"],.track img[src*="89cce2a3"],.track img[src*="9a49a50d"]{height:42px;max-width:140px;}}
+@keyframes slide{to{transform:translateX(-50%);}}
+
+/* ============ THE GAP (Engine section 2) ============ */
+.gap{display:grid;grid-template-columns:minmax(0,1fr);}
+@media(min-width:900px){.gap{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);}}
+.gap-left{padding:72px var(--gutter);}
+@media(min-width:900px){.gap-left{padding:120px 70px 110px max(var(--gutter),calc((100vw - var(--wrap))/2 + var(--gutter)));}}
+.gap-left .mono{margin-bottom:26px;display:block;}
+.gap-lead{font-size:clamp(24px,2.7vw,34px);line-height:1.3;letter-spacing:-0.02em;max-width:660px;}
+.gap-lead strong{font-weight:700;}
+.ruled{background:var(--y);border-left:5px solid var(--ink);padding:28px 30px;margin-top:44px;max-width:560px;}
+@media(min-width:768px){.ruled{margin-left:0;padding:32px 40px;}}
+.ruled p{color:var(--ink);font-size:18px;line-height:1.7;font-weight:500;}
+.ruled .line-link{margin-top:22px;color:var(--ink);}
+.gap-right{background:var(--blue);color:#fff;padding:64px var(--gutter);}
+@media(min-width:900px){.gap-right{padding:110px max(var(--gutter),calc((100vw - var(--wrap))/2 + var(--gutter))) 90px 56px;margin-bottom:-90px;position:relative;z-index:2;}}
+.gap-right .zip-mark{width:54px;height:54px;margin-bottom:30px;filter:brightness(0) invert(1);}
+.gap-right h2{font-size:clamp(24px,2.3vw,30px);font-weight:700;line-height:1.15;margin-bottom:18px;}
+.gap-right p{font-size:15.5px;line-height:1.7;margin-bottom:26px;}
+.creds{list-style:none;border-top:1.5px solid rgba(255,255,255,.35);margin-bottom:26px;}
+.creds li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1.5px solid rgba(255,255,255,.35);font-size:14.5px;}
+.creds li b{font-weight:800;font-size:16px;color:var(--y);}
+
+/* ============ PROBLEM (Plethora mosaic) ============ */
+.problem{padding:96px 0 0;}
+@media(min-width:900px){.problem{padding-top:170px;}}
+.down{width:22px;height:22px;stroke:var(--ink);stroke-width:1.8;fill:none;margin-bottom:22px;}
+.prob-head{max-width:820px;margin-bottom:56px;}
+.prob-head h2{font-size:clamp(30px,4vw,52px);margin:16px 0 18px;}
+.prob-head .sub{font-size:clamp(19px,2vw,24px);font-weight:600;letter-spacing:-0.01em;margin-bottom:18px;}
+.prob-head .desc{color:var(--muted);font-size:17px;line-height:1.75;max-width:700px;}
+.mosaic{display:grid;grid-template-columns:minmax(0,1fr);}
+@media(min-width:700px){.mosaic{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(min-width:1024px){.mosaic{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(310px,auto);}}
+.tile{position:relative;min-width:0;padding:36px 30px;}
+.tile-img{padding:0;min-height:300px;overflow:hidden;}
+.tile-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1);}
+.tile-img:hover img{transform:scale(1.04);}
+.t-yellow{background:var(--y);}
+.t-black{background:var(--blue);color:#fff;}
+.t-blue{background:var(--blue);color:#fff;}
+.t-grey{background:var(--grey);}
+.t-white{background:#fff;}
+.m-wrong{display:flex;flex-direction:column;}
+@media(min-width:1024px){.m-wrong{grid-column:1;grid-row:1/span 2;}.m-flat{grid-column:2;grid-row:1;}.m-punch{grid-column:2;grid-row:2;}.m-big{grid-column:3/span 2;grid-row:1/span 2;}}
+.wrong-list{list-style:none;display:flex;flex-direction:column;gap:22px;margin-top:auto;}
+.wrong-list li{display:grid;grid-template-columns:28px 1fr;gap:14px;font-size:15px;line-height:1.45;font-weight:500;}
+.wrong-list svg{width:28px;height:28px;stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.m-punch{display:flex;flex-direction:column;justify-content:space-between;gap:24px;}
+.m-punch p{font-size:19px;line-height:1.45;font-weight:300;}
+.m-punch strong{display:block;color:var(--y);font-weight:700;font-size:26px;margin-top:12px;letter-spacing:-0.02em;}
+
+/* ============ SERVICES (Engine news row) ============ */
+.services{position:relative;padding:110px 0 120px;margin-top:110px;}
+.services .wrap{position:relative;z-index:1;}
+.svc-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:0;}
+@media(min-width:1024px){.svc-layout{grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:stretch;}}
+.svc-intro{background:var(--blue);color:#fff;padding:40px 32px;display:flex;flex-direction:column;}
+@media(min-width:1024px){.svc-intro{order:2;padding:48px 38px;position:relative;}}
+.svc-intro .mono{color:var(--y);margin-bottom:22px;display:block;}
+.svc-intro h2{font-size:clamp(28px,2.8vw,38px);font-weight:700;margin-bottom:22px;}
+.svc-intro p{color:rgba(255,255,255,.75);font-size:15.5px;line-height:1.7;margin-bottom:14px;}
+.svc-intro .line-link{color:#fff;margin-top:auto;padding-top:22px;}
+.svc-arrows{display:flex;gap:10px;margin-top:26px;}
+@media(min-width:1200px){.svc-arrows{position:absolute;right:-70px;top:0;flex-direction:column;margin:0;}}
+.circ{width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--y);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,color .2s;}
+.svc-intro .circ{border-color:var(--y);}
+@media(min-width:1200px){.svc-intro .circ{border-color:var(--ink);}}
+.circ:hover{background:var(--blue);color:#fff;}
+.circ svg{width:16px;height:16px;stroke:currentColor;stroke-width:2.4;fill:none;}
+.svc-track{display:grid;grid-auto-flow:column;grid-auto-columns:88%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;background:#fff;}
+.svc-track::-webkit-scrollbar{display:none;}
+@media(min-width:700px){.svc-track{grid-auto-columns:50%;}}
+@media(min-width:1024px){.svc-layout .svc-track{order:1;}}
+.svc-card{position:relative;scroll-snap-align:start;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0;}
+.svc-media{position:relative;aspect-ratio:4/3;overflow:hidden;}
+.svc-media img{width:100%;height:100%;object-fit:cover;}
+.svc-tag{position:absolute;left:50%;bottom:0;transform:translateX(-50%);background:var(--blue);color:#fff;padding:8px 18px;white-space:nowrap;z-index:2;}
+.svc-body{padding:40px 28px 34px;display:flex;flex-direction:column;flex:1;text-align:center;}
+.svc-body .tick{width:1.5px;height:24px;background:var(--ink);margin:0 auto 20px;}
+.svc-body h3{font-size:21px;font-weight:700;letter-spacing:-0.015em;margin-bottom:10px;}
+.svc-body .sub{color:var(--muted);font-size:15.5px;line-height:1.55;margin-bottom:14px;}
+.svc-body .zip{text-align:left;}
+.svc-body .zip-toggle{display:flex;margin:0 auto;}
+.svc-body .zip-body ul{list-style:none;margin:12px 0 18px;border-top:1px solid var(--line);}
+.svc-body .zip-body li{font-size:14.5px;line-height:1.5;padding:10px 0 10px 22px;border-bottom:1px solid var(--line);position:relative;}
+.svc-body .zip-body li::before{content:"";position:absolute;left:0;top:17px;width:9px;height:9px;background:var(--y);border:1.5px solid var(--ink);}
+.svc-body .receive{background:var(--grey-2);border-left:3px solid var(--y);padding:14px 16px;font-size:14.5px;line-height:1.6;margin-bottom:6px;}
+.svc-body .btn{margin-top:auto;}
+.svc-body .btn-wrap{margin-top:auto;padding-top:22px;}
+
+/* ============ SPLIT TILES (Plethora two-up) ============ */
+.split{display:grid;grid-template-columns:minmax(0,1fr);}
+@media(min-width:900px){.split{grid-template-columns:repeat(2,minmax(0,1fr));}}
+.split .tile{padding:48px var(--gutter);}
+@media(min-width:900px){.split .tile{padding:64px 56px;}}
+.split .tile-img{padding:0;min-height:320px;}
+@media(min-width:900px){.split .tile-img{min-height:540px;}}
+.big-text{font-size:clamp(26px,2.9vw,38px);line-height:1.2;letter-spacing:-0.02em;}
+
+/* risk check */
+.risk .tile{display:flex;flex-direction:column;justify-content:center;}
+.risk .kicker{font-weight:700;font-size:15px;margin-bottom:14px;}
+.risk h2{margin-bottom:22px;}
+.risk p{font-size:16.5px;line-height:1.7;max-width:540px;}
+.risk .outcome{margin:20px 0 30px;padding-left:16px;border-left:3px solid var(--ink);font-weight:600;}
+
+/* method */
+.method{padding-top:110px;}
+@media(min-width:900px){.method .split .tile-img{order:2;}.method .split .t-white{order:1;}}
+.method .tile-img .img-tag{position:absolute;left:0;bottom:0;max-width:86%;background:var(--y);padding:18px 22px;font-size:16px;line-height:1.45;font-weight:500;z-index:1;}
+.method h2{font-size:clamp(30px,3.4vw,46px);margin:0 0 14px;}
+.method .sub{font-weight:700;font-size:19px;margin-bottom:16px;}
+.method .lead{color:var(--muted);font-size:16px;line-height:1.75;margin-bottom:30px;}
+.phases{border-top:1.5px solid var(--ink);}
+.phase{border-bottom:1.5px solid var(--ink);}
+.ph-head{width:100%;display:flex;align-items:center;gap:18px;background:none;border:none;padding:18px 0;cursor:pointer;text-align:left;min-height:64px;}
+.ph-head::after{content:"";width:16px;height:16px;flex-shrink:0;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .3s ease;margin-right:4px;}
+.ph-num{font-size:clamp(22px,2.2vw,28px);font-weight:300;letter-spacing:-0.02em;flex:1;}
+.ph-num b{font-weight:700;}
+.ph-body{overflow:hidden;max-height:0;transition:max-height .6s cubic-bezier(.4,0,.2,1);}
+.ph-body p{padding:0 40px 22px 0;color:var(--muted);font-size:15.5px;line-height:1.75;}
+.phase.open .ph-head::after{transform:rotate(-135deg);}
+.phase.open .ph-num{background:linear-gradient(transparent 62%,var(--y) 62%);background-size:100% 100%;}
+.method .close{margin-top:30px;font-size:20px;letter-spacing:-0.015em;}
+.method .close b{background:var(--y);padding:0 6px;font-weight:700;}
+
+/* ============ WHY DIFFERENT (Engine social grid) ============ */
+.diff{padding:110px 0 0;}
+.diff-grid{display:grid;grid-template-columns:minmax(0,1fr);}
+@media(min-width:700px){.diff-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(min-width:1024px){.diff-grid{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(290px,auto);}
+  .d-photo{grid-column:1/span 2;grid-row:1/span 2;}
+  .d-head{grid-column:3/span 2;grid-row:1;}
 }
-.hero-scrim{position:absolute;inset:0;background:
-  linear-gradient(112deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.72) 32%, rgba(26,26,26,.52) 62%, rgba(58,58,58,.32) 100%);}
-.hero-content{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;max-width:1320px;width:100%;margin:0 auto;padding:100px 24px 44px;}
-@media(max-width:640px){.hero-content{padding:90px 16px 32px;}}
-.hero-kicker{font-family:'Archivo',sans-serif;font-size:13px;letter-spacing:.18em;color:var(--accent-bright);text-transform:uppercase;margin-bottom:22px;font-weight:600;}
-.hero h1{font-size:clamp(34px,5.2vw,64px);font-weight:400;color:#fff;max-width:980px;}
-.hero h1 .hl{color:var(--red-bright);}
-.hero-lead{font-size:clamp(19px,2vw,24px);line-height:1.4;color:#fff;max-width:680px;margin:22px 0 20px;font-weight:400;letter-spacing:-0.01em;}
-.hero-sub{font-size:16.5px;line-height:1.7;color:rgba(255,255,255,.82);max-width:640px;margin:0 0 30px;}
-.hero-sub p+p{margin-top:14px;}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:stretch;}
-@media(max-width:640px){.hero-actions{flex-direction:column;align-items:stretch;}}
+.d-head{display:flex;flex-direction:column;justify-content:space-between;gap:30px;}
+.d-head h2{font-size:clamp(30px,3.4vw,46px);font-weight:700;}
+.d-head .sub{font-size:19px;margin-top:12px;}
+.d-item{display:flex;flex-direction:column;gap:14px;}
+.d-item .d-icon{width:40px;height:40px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.d-item h3{font-size:20px;font-weight:700;line-height:1.25;letter-spacing:-0.01em;}
+.d-item p{font-size:15px;line-height:1.65;opacity:.85;}
 
-/* hero client strip */
-.hero-logos{position:relative;z-index:2;overflow:hidden;background:var(--red-pigment);padding:36px 0 40px;}
-.hero-logos-label{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#fff;text-align:center;margin-bottom:26px;padding:0 22px;}
-.hero-logos .track{display:flex;align-items:center;width:max-content;animation:logoslide 42s linear infinite;gap:120px;padding-left:120px;}
-.hero-logos .client-logo{height:72px;width:auto;max-width:220px;flex-shrink:0;object-fit:contain;opacity:.95;display:block;filter:brightness(0) invert(1);}
-.hero-logos .client-logo[src*="29fe9007"],
-.hero-logos .client-logo[src*="89cce2a3"],
-.hero-logos .client-logo[src*="9a49a50d"]{height:52px;max-width:150px;}
-@keyframes logoslide{to{transform:translateX(-50%);}}
-@media(max-width:640px){.hero-logos .client-logo{height:52px;max-width:170px;}.hero-logos .client-logo[src*="29fe9007"],.hero-logos .client-logo[src*="89cce2a3"],.hero-logos .client-logo[src*="9a49a50d"]{height:38px;max-width:120px;}.hero-logos .track{gap:76px;padding-left:76px;}}
+/* ============ BELIEF ============ */
+.belief{margin-top:110px;}
+.belief .tile-img img{object-position:center top;}
+.belief .mono{display:block;margin-bottom:24px;color:var(--y);}
+.belief h2{font-size:clamp(30px,3.6vw,50px);font-weight:700;margin-bottom:28px;}
+.belief p{font-size:17px;line-height:1.75;margin-bottom:16px;max-width:580px;}
+.belief .zip-toggle{color:#fff;}
+.belief .zip-glyph{background:#fff;}
+.belief .close{font-size:clamp(20px,2.2vw,26px);line-height:1.4;letter-spacing:-0.015em;font-weight:300;border-top:1.5px solid rgba(255,255,255,.35);padding-top:24px;margin-top:24px;}
+.belief .close b{font-weight:700;color:var(--y);}
 
-/* ============ 2. PROBLEM ============ */
-.problem{padding:100px 0 90px;}
-@media(max-width:640px){.problem{padding:70px 0 60px;}}
-.prob-head{text-align:center;max-width:760px;margin:0 auto 54px;}
-.prob-head .eyebrow{justify-content:center;}
-.prob-head h2{font-size:clamp(30px,3.8vw,44px);margin-top:18px;}
-.prob-head .sub{font-size:clamp(18px,2vw,22px);color:var(--ink);line-height:1.4;margin-top:16px;font-weight:500;letter-spacing:-0.01em;}
-.prob-head .desc{font-size:17px;color:#555;line-height:1.7;margin-top:20px;}
-.prob-label{text-align:center;font-family:'Archivo',sans-serif;font-size:13px;letter-spacing:.12em;color:var(--green-dark);text-transform:uppercase;font-weight:600;margin:0 0 22px;}
+/* ============ STATS ============ */
+.stats{padding:110px 0 0;}
+.stats-photo{position:relative;aspect-ratio:16/9;max-height:560px;width:100%;overflow:hidden;}
+.stats-photo img{width:100%;height:100%;object-fit:cover;}
+.stat-grid{display:grid;grid-template-columns:minmax(0,1fr);}
+@media(min-width:600px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(min-width:1024px){.stat-grid{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:-110px;position:relative;z-index:2;margin-left:calc(-1 * min(6vw, 130px));margin-right:calc(-1 * min(6vw, 130px));}}
+.stat{padding:34px 24px 30px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;}
+.stat-num{font-size:clamp(46px,4.6vw,72px);font-weight:300;letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.stat-label{font-size:15px;line-height:1.5;max-width:240px;margin-top:18px;}
+.t-black .stat-num{color:var(--y);}
+.t-blue .stat-num{color:var(--y);}
+.stats-tag{padding:56px 0 0;font-size:clamp(17px,2.3vw,30px);letter-spacing:-0.02em;font-weight:300;text-align:center;}
+@media(min-width:900px){.stats-tag{white-space:nowrap;}}
+.stats-tag b{font-weight:700;background:var(--y);padding:0 8px;}
 
-.prob-grid{display:grid;grid-template-columns:1fr;border:1px solid var(--grey-line);}
-@media(min-width:720px){.prob-grid{grid-template-columns:1fr 1fr;}}
-@media(min-width:960px){.prob-grid{grid-template-columns:repeat(3,1fr);}}
-.prob-cell{padding:36px 30px;min-width:0;position:relative;border-bottom:1px solid var(--grey-line);border-right:1px solid var(--grey-line);}
-.prob-cell:last-child{border-bottom:none;}
-@media(min-width:720px){
-  .prob-cell{border-bottom:1px solid var(--grey-line);border-right:1px solid var(--grey-line);}
-  .prob-cell:nth-child(2n){border-right:none;}
-  .prob-cell:nth-last-child(-n+2):nth-child(2n+1),
-  .prob-cell:nth-last-child(-n+2):nth-child(2n+1) ~ .prob-cell{border-bottom:none;}
-}
-@media(min-width:960px){
-  .prob-cell{border-right:1px solid var(--grey-line);border-bottom:1px solid var(--grey-line);}
-  .prob-cell:nth-child(3n){border-right:none;}
-  .prob-cell:nth-last-child(-n+3):nth-child(3n+1),
-  .prob-cell:nth-last-child(-n+3):nth-child(3n+1) ~ .prob-cell{border-bottom:none;}
-}
-.prob-cell .pn{display:block;width:36px;height:36px;margin-bottom:22px;color:var(--red-pigment);}
-.prob-cell .pn svg{width:100%;height:100%;display:block;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-.prob-cell p{font-size:17.5px;line-height:1.5;color:var(--ink);font-weight:500;letter-spacing:-0.005em;}
-.prob-cell.quote{background:var(--ink);color:#fff;}
-.prob-cell.quote p{color:#fff;font-size:19px;line-height:1.45;font-weight:400;}
-.prob-cell.quote p strong{color:var(--accent-bright);font-weight:600;display:block;margin-top:10px;font-size:22px;}
+/* ============ CASE STUDY (Plethora CNC + geometry) ============ */
+.case{padding:110px 0 0;}
+.case .split .tile{display:flex;flex-direction:column;justify-content:center;}
+.case h2{font-size:clamp(28px,3.2vw,44px);margin-bottom:20px;}
+.case h3{font-size:18px;font-weight:700;margin-bottom:14px;}
+.case .intro{font-size:16.5px;line-height:1.75;color:var(--muted);}
+.work{padding:70px 0 0;}
+.work-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:40px 28px;margin-top:30px;}
+@media(min-width:600px){.work-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(min-width:1024px){.work-grid{grid-template-columns:repeat(5,minmax(0,1fr));}}
+.work-item svg{width:100%;max-width:150px;height:auto;aspect-ratio:5/4;margin-bottom:18px;}
+.work-item p{font-size:14.5px;line-height:1.6;}
+.outcome-row{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;margin-top:64px;padding-top:40px;border-top:1.5px solid var(--ink);}
+@media(min-width:900px){.outcome-row{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:60px;}}
+.outcome-row p{font-size:17px;line-height:1.75;}
+.outcome-row b{background:var(--y);padding:0 4px;}
+.outcome-row .quote{font-size:20px;line-height:1.45;font-weight:600;letter-spacing:-0.01em;}
 
-.prob-close{text-align:center;max-width:720px;margin:44px auto 0;}
-.prob-close p{font-size:clamp(20px,2.2vw,26px);line-height:1.5;letter-spacing:-0.015em;font-weight:400;color:var(--ink);}
-.prob-close p .hl{color:var(--accent-deep);font-weight:500;}
+/* ============ ABOUT (Engine offset yellow) ============ */
+.about{padding:130px 0 110px;position:relative;}
+.about-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:48px;align-items:start;}
+@media(min-width:900px){.about-grid{grid-template-columns:minmax(0,0.95fr) minmax(0,1.05fr);gap:72px;}}
+.about-photo{position:relative;}
+.about-photo::before{content:"";position:absolute;left:-18px;top:-18px;width:62%;height:70%;background:var(--y);z-index:0;}
+@media(min-width:900px){.about-photo::before{left:-40px;top:-40px;}}
+.about-photo img{position:relative;z-index:1;width:100%;height:auto;object-fit:cover;}
+.about-photo .cap{position:relative;z-index:1;background:var(--blue);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;gap:12px;align-items:center;}
+.about-photo .cap b{font-size:17px;}
+.about-photo .cap .mono{color:var(--y);font-size:10.5px;}
+.about .mono.eb{display:block;margin-bottom:20px;}
+.about h2{font-size:clamp(30px,3.4vw,46px);margin-bottom:12px;}
+.about .fb-sub{font-size:clamp(18px,2vw,22px);font-weight:700;margin-bottom:26px;}
+.about p{font-size:16.5px;line-height:1.8;margin-bottom:16px;}
+.about p b{background:var(--y);padding:0 4px;font-weight:700;}
+.about .fb-note{border-left:3px solid var(--ink);padding:4px 0 4px 22px;font-size:18px;line-height:1.6;font-weight:500;margin-top:18px;}
+.badges{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:30px;}
+.badges img{height:84px;width:auto;max-width:120px;object-fit:contain;}
 
-/* ============ 3. SERVICES ============ */
-.services{padding:100px 0;background:var(--grey-soft);}
-@media(max-width:640px){.services{padding:70px 0;}}
-.svc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:34px;flex-wrap:wrap;}
-.svc-head h2{font-size:clamp(30px,3.6vw,44px);max-width:760px;margin-top:18px;}
-.svc-head .lead{font-size:16.5px;color:#555;max-width:620px;margin-top:16px;line-height:1.7;}
-.svc-head .go{font-size:26px;color:var(--green-dark);font-family:'Archivo',sans-serif;}
-
-.start-here{background:var(--green-dark);padding:32px 34px;display:flex;gap:36px;align-items:center;justify-content:space-between;margin-bottom:44px;flex-wrap:wrap;}
-.start-here .sh-text{display:flex;gap:22px;align-items:flex-start;flex:1;min-width:260px;}
-.start-here .sh{font-family:'Archivo',sans-serif;font-size:12.5px;letter-spacing:.12em;color:var(--accent-bright);font-weight:600;white-space:nowrap;padding-top:4px;}
-.start-here p{font-size:16px;color:#fff;line-height:1.6;max-width:560px;}
-.start-here p b{color:var(--accent-bright);font-weight:600;}
-.start-here .sh-actions{display:flex;flex-direction:column;gap:10px;min-width:260px;}
-.start-here .btn-ghost-w{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);}
-.start-here .btn-ghost-w::before{background:#fff;}
-.start-here .btn-ghost-w:hover{color:var(--green-dark);border-color:#fff;}
-@media(max-width:700px){.start-here{padding:26px 22px;}.start-here .sh-text{flex-direction:column;gap:6px;}.start-here .sh-actions{width:100%;min-width:0;}}
-
-/* Services carousel */
-.svc-carousel{position:relative;}
-.svc-viewport{overflow:hidden;border-top:1px solid #D6DDDD;border-bottom:1px solid #D6DDDD;background:var(--white);}
-.svc-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform;}
-.svc-card{flex:0 0 100%;padding:36px 24px;box-sizing:border-box;min-width:0;display:grid;grid-template-columns:1fr;gap:28px;}
-@media(min-width:820px){.svc-card{grid-template-columns:340px 1fr;gap:48px;padding:48px 52px;align-items:start;}}
-@media(min-width:1024px){.svc-card{grid-template-columns:380px 1fr;padding:52px 60px;}}
-
-.svc-card .svc-left{display:flex;flex-direction:column;min-width:0;}
-.svc-card .svc-num{font-family:'Archivo',sans-serif;font-size:14px;color:var(--red-pigment);font-weight:600;letter-spacing:.10em;margin-bottom:20px;}
-.svc-card .svc-imgwrap{overflow:hidden;width:100%;margin-bottom:22px;}
-.svc-card .svc-img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;}
-.svc-card .svc-meta .ml{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.08em;color:#92A0A3;text-transform:uppercase;margin-bottom:8px;font-weight:600;}
-.svc-card .svc-meta .mi{font-size:14.5px;color:var(--burgundy);line-height:1.6;font-weight:500;}
-
-.svc-card .svc-body{display:flex;flex-direction:column;min-width:0;}
-.svc-card .svc-body h3{font-size:clamp(22px,2.4vw,28px);font-weight:500;margin-bottom:8px;line-height:1.2;letter-spacing:-0.02em;}
-.svc-card .svc-body .sub{font-size:17px;font-weight:600;color:var(--green-dark);margin-bottom:18px;letter-spacing:-0.01em;line-height:1.35;}
-.svc-card .svc-body .desc{font-size:16px;color:#555;line-height:1.65;margin-bottom:22px;max-width:none;}
-.svc-card .svc-body .includes-label{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.08em;color:#92A0A3;text-transform:uppercase;margin-bottom:10px;font-weight:600;}
-.svc-card .svc-body .includes{margin-bottom:22px;list-style:none;padding:0;}
-.svc-card .svc-body .includes li{font-size:15.5px;color:var(--ink);line-height:1.55;padding:6px 0 6px 20px;position:relative;}
-.svc-card .svc-body .includes li::before{content:"+";position:absolute;left:0;top:6px;color:var(--red-pigment);font-weight:500;}
-.svc-card .svc-body .deliverable{font-size:15.5px;color:#444;line-height:1.7;background:rgba(204,53,37,.06);border-left:2px solid var(--red-pigment);padding:14px 18px;max-width:none;margin-bottom:22px;}
-.svc-card .svc-body .btn{align-self:flex-start;}
-
-/* Arrows */
-.svc-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;background:var(--white);border:1px solid var(--grey-line);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);transition:all .2s ease;z-index:5;box-shadow:0 4px 20px rgba(0,0,0,.10);border-radius:50%;padding:0;line-height:1;}
-.svc-arrow svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-.svc-arrow:hover:not(:disabled){background:var(--ink);color:#fff;border-color:var(--ink);}
-.svc-arrow:disabled{opacity:.3;cursor:not-allowed;}
-.svc-prev{left:12px;}
-.svc-next{right:12px;}
-@media(min-width:820px){.svc-arrow{width:52px;height:52px;}.svc-arrow svg{width:20px;height:20px;}.svc-prev{left:20px;}.svc-next{right:20px;}}
-
-/* Dots */
-.svc-dots{display:flex;justify-content:center;gap:10px;margin-top:32px;}
-.svc-dot{width:36px;height:3px;background:var(--grey-line);border:none;cursor:pointer;padding:0;transition:background .2s ease;border-radius:0;}
-.svc-dot.active{background:var(--red-pigment);}
-.svc-dot:hover:not(.active){background:var(--cold-velvet);}
-
-.svc-close-cta{text-align:center;margin-top:52px;}
-
-/* ============ 4. LEAD MAGNET / RISK CHECK (dark band) ============ */
-.audit{position:relative;background:var(--absolute);color:#fff;padding:90px 0;overflow:hidden;}
-@media(max-width:640px){.audit{padding:70px 0;}}
-.audit-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
-.audit-overlay{position:absolute;inset:0;z-index:1;background:
-  linear-gradient(100deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.86) 40%, rgba(26,26,26,.72) 72%, rgba(58,58,58,.50) 100%);}
-.audit .wrap{position:relative;z-index:2;}
-.audit-grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;}
-@media(min-width:820px){.audit-grid{grid-template-columns:240px 1fr;gap:60px;}}
-.audit .eyebrow{color:rgba(255,255,255,.85);}
-.audit .subhead{font-family:'Archivo',sans-serif;font-size:14px;letter-spacing:.12em;color:var(--accent-bright);text-transform:uppercase;margin-bottom:10px;font-weight:600;}
-.audit h2{color:#fff;font-size:clamp(26px,3vw,38px);max-width:900px;letter-spacing:-0.02em;line-height:1.25;}
-.audit h2 .hl{color:var(--red-bright);}
-.audit p{font-size:16.5px;color:rgba(255,255,255,.78);max-width:640px;margin:20px 0 28px;line-height:1.7;}
-.audit-outcome{font-family:'Archivo',sans-serif;font-size:15px;color:rgba(255,255,255,.72);border-left:2px solid var(--accent-bright);padding-left:16px;margin:0 0 30px;max-width:600px;line-height:1.65;}
-.audit-actions{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;}
-@media(max-width:640px){.audit-actions{flex-direction:column;}}
-
-/* ============ 5. METHOD (Zipper Approach) ============ */
-.approach{padding:100px 0;}
-@media(max-width:640px){.approach{padding:70px 0;}}
-.appr-grid{display:grid;grid-template-columns:1fr;gap:30px;}
-@media(min-width:920px){.appr-grid{grid-template-columns:300px 1fr 1fr;gap:60px;align-items:stretch;}}
-.appr-col{display:flex;flex-direction:column;}
-.appr-col .method-tag{margin-top:16px;font-size:14px;color:#666;line-height:1.55;max-width:260px;font-style:italic;}
-.appr-media{flex:1;margin-top:24px;}
-.appr-media img{width:100%;height:auto;min-height:280px;object-fit:cover;background:var(--grey-soft);display:block;}
-@media(min-width:920px){.appr-media img{min-height:520px;height:100%;}}
-.appr-right{}
-@media(min-width:920px){.appr-right{grid-column:2/4;}}
-.appr-right h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:14px;max-width:720px;}
-.appr-right .sub{font-size:clamp(19px,2vw,22px);color:var(--green-dark);font-weight:500;letter-spacing:-0.01em;margin-bottom:22px;}
-.appr-right .lead{font-size:16.5px;color:#555;line-height:1.75;margin-bottom:20px;max-width:640px;}
-.appr-label{font-family:'Archivo',sans-serif;font-size:12.5px;letter-spacing:.1em;color:var(--green-dark);text-transform:uppercase;font-weight:600;margin:34px 0 4px;}
-.appr-step{display:grid;grid-template-columns:180px 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--grey-line);align-items:start;}
-.appr-step:last-of-type{border-bottom:1px solid var(--grey-line);}
-.appr-step .sn{font-size:17px;font-weight:600;color:var(--ink);line-height:1.35;}
-.appr-step .sn small{display:block;font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.14em;color:var(--green);text-transform:uppercase;font-weight:600;margin-bottom:6px;}
-.appr-step .sd{font-size:15.5px;color:#555;line-height:1.7;}
-.appr-close{margin-top:34px;font-size:clamp(19px,2vw,22px);color:var(--ink);letter-spacing:-0.015em;line-height:1.5;}
-.appr-close .hl{color:var(--accent-deep);font-weight:500;}
-@media(max-width:560px){.appr-step{grid-template-columns:1fr;gap:8px;}}
-
-/* ============ 6. WHY DIFFERENT (accordion) ============ */
-.adv{padding:100px 0;background:var(--ash);}
-@media(max-width:640px){.adv{padding:70px 0;}}
-.adv-head{display:grid;grid-template-columns:1fr;gap:18px;align-items:start;margin-bottom:44px;}
-@media(min-width:880px){.adv-head{grid-template-columns:170px 1fr;gap:56px;margin-bottom:56px;}}
-.adv-head h2{font-size:clamp(28px,3.4vw,40px);}
-.adv-head .sub{color:var(--green-dark);font-weight:500;margin-top:14px;font-size:clamp(18px,1.9vw,20px);letter-spacing:-0.01em;}
-.adv-grid{display:grid;grid-template-columns:1fr;column-gap:70px;row-gap:34px;align-items:stretch;}
-@media(min-width:880px){.adv-grid{grid-template-columns:480px 1fr;}}
-.adv-media{position:relative;}
-.adv-media img{width:100%;height:auto;min-height:320px;object-fit:cover;display:block;}
-@media(min-width:880px){.adv-media{height:100%;}.adv-media img{min-height:560px;height:100%;}}
-.adv-items{display:block;}
-.adv-item{border-top:1px solid #D6DDDD;}
-.adv-item:last-child{border-bottom:1px solid #D6DDDD;}
-.adv-item summary{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;cursor:pointer;list-style:none;min-height:56px;}
-.adv-item summary::-webkit-details-marker{display:none;}
-.adv-item summary::after{content:'+';font-size:24px;line-height:1;color:var(--green-dark);font-weight:300;flex-shrink:0;}
-.adv-item[open] summary::after{content:'−';}
-.adv-item summary:hover h3{color:var(--accent-deep);}
-.adv-item h3{font-size:clamp(17px,1.8vw,20px);font-weight:500;color:var(--green-dark);line-height:1.35;transition:color .2s ease;}
-.adv-item p{font-size:15.5px;color:#555;line-height:1.7;max-width:640px;padding:0 0 26px;}
-
-/* ============ 7. BELIEF (dark split) ============ */
-.retention{background:var(--absolute);color:#fff;display:grid;grid-template-columns:1fr;}
-@media(min-width:860px){.retention{grid-template-columns:minmax(380px,44%) 1fr;}}
-.ret-media{position:relative;min-height:340px;overflow:hidden;background:var(--absolute);}
-@media(min-width:860px){.ret-media{min-height:560px;}}
-.ret-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;}
-.ret-media::after{content:"";position:absolute;inset:0;background:
-  linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.60) 55%, rgba(0,0,0,.94) 100%);}
-.ret-media-text{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:0 30px 40px;}
-@media(min-width:860px){.ret-media-text{padding:0 44px 46px;}}
-.retention .eyebrow{color:rgba(255,255,255,.85);}
-.retention h2{color:#fff;font-size:clamp(26px,2.8vw,38px);letter-spacing:-0.02em;line-height:1.2;margin-top:14px;}
-.retention h2 .hl{color:var(--red-bright);}
-.ret-body{padding:70px 22px 70px;}
-@media(min-width:860px){.ret-body{padding:100px max(40px,calc((100vw - 1180px)/2)) 100px 70px;}}
-.retention p{font-size:16.5px;color:rgba(255,255,255,.78);max-width:660px;line-height:1.75;margin-bottom:20px;}
-.ret-close{font-size:clamp(20px,2.4vw,26px) !important;color:#fff !important;font-weight:500;letter-spacing:-0.015em;line-height:1.5 !important;border-top:1px solid rgba(255,255,255,.2);padding-top:28px;margin-top:30px;}
-.ret-close .hl{color:var(--red-bright);}
-
-/* ============ 8. STAT BAND — cinematic ============ */
-.stats{position:relative;background:var(--absolute);color:#fff;padding:130px 0;overflow:hidden;}
-@media(max-width:640px){.stats{padding:88px 0;}}
-.stats-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.9;}
-.stats-overlay{position:absolute;inset:0;z-index:1;background:
-  linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.18) 45%, rgba(0,0,0,.55) 100%),
-  radial-gradient(65% 50% at 50% 45%, rgba(0,0,0,0) 0%, rgba(0,0,0,.28) 100%);}
-.stats .wrap{position:relative;z-index:2;}
-
-.stats-header{text-align:center;max-width:640px;margin:0 auto 72px;}
-@media(max-width:640px){.stats-header{margin-bottom:56px;}}
-.stats-header .eyebrow{color:rgba(255,255,255,.85);justify-content:center;margin-bottom:22px;}
-.stats-header .stats-intro{font-family:'Archivo',sans-serif;font-size:17px;color:rgba(255,255,255,.72);line-height:1.65;margin:0 auto;max-width:520px;font-weight:400;}
-
-.stats-row{display:grid;grid-template-columns:1fr;gap:56px;align-items:start;}
-@media(min-width:600px){.stats-row{grid-template-columns:1fr 1fr;gap:64px 40px;}}
-@media(min-width:960px){.stats-row{grid-template-columns:repeat(4,1fr);gap:32px;position:relative;}}
-
-.stat-item{text-align:center;padding:0 12px;position:relative;}
-@media(min-width:960px){
-  .stat-item::after{content:"";position:absolute;top:18%;right:-16px;height:64%;width:1px;background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,.22) 50%, transparent 100%);}
-  .stat-item:last-child::after{display:none;}
-}
-
-.stat-num{display:block;font-family:'Archivo',sans-serif;font-size:clamp(58px,8.2vw,120px);font-weight:300;line-height:1;letter-spacing:-0.045em;color:#fff;margin-bottom:22px;font-variant-numeric:tabular-nums;text-shadow:0 2px 32px rgba(0,0,0,.5);}
-.stat-num .accent{color:var(--red-bright);}
-
-.stat-label{font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.82);font-weight:400;letter-spacing:.01em;max-width:220px;margin:0 auto;text-shadow:0 1px 12px rgba(0,0,0,.55);}
-
-.stats-tag{margin:96px auto 0;font-size:clamp(17px,2.4vw,30px);line-height:1.3;color:#fff;letter-spacing:-0.02em;text-align:center;font-weight:300;max-width:none;padding:0 20px;text-shadow:0 2px 24px rgba(0,0,0,.5);white-space:nowrap;}
-.stats-tag .hl{color:var(--red-bright);font-weight:500;}
-@media(max-width:720px){.stats-tag{white-space:normal;line-height:1.35;font-size:clamp(17px,4.6vw,22px);}}
-@media(max-width:640px){.stats-tag{margin-top:72px;}}
-
-/* ============ 9. CASE STUDY ============ */
-.proof{padding:100px 0;}
-@media(max-width:640px){.proof{padding:70px 0;}}
-.proof-head{display:grid;grid-template-columns:1fr;gap:20px;align-items:start;margin-bottom:44px;}
-@media(min-width:880px){.proof-head{grid-template-columns:230px 1fr;gap:56px;margin-bottom:50px;}}
-.proof-head h2{font-size:clamp(26px,3.2vw,38px);}
-.case{display:grid;grid-template-columns:1fr;gap:30px;align-items:start;}
-@media(min-width:880px){.case{grid-template-columns:340px 1fr;gap:60px;}}
-.case-card{position:relative;background:var(--absolute);color:#fff;padding:0;overflow:hidden;min-height:480px;display:flex;flex-direction:column;}
-@media(max-width:880px){.case-card{min-height:380px;}}
-.case-card-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.9;}
-.case-card-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.52) 55%, rgba(0,0,0,.94) 100%);}
-.case-card-content{position:relative;z-index:2;padding:36px 32px;margin-top:auto;display:flex;flex-direction:column;}
-.case-card .cc-tag{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.10em;text-transform:uppercase;color:var(--red-bright);margin-bottom:18px;display:flex;align-items:center;gap:8px;font-weight:600;text-shadow:0 1px 10px rgba(0,0,0,.55);}
-.case-card .cc-tag::before{content:"";width:7px;height:7px;background:var(--red-bright);}
-.case-card h3{font-size:22px;line-height:1.28;letter-spacing:-0.02em;color:#fff;font-weight:500;text-shadow:0 2px 20px rgba(0,0,0,.6);}
-.case-card .cc-intro{font-size:15.5px;color:rgba(255,255,255,.82);line-height:1.7;margin-top:16px;text-shadow:0 1px 14px rgba(0,0,0,.6);}
-.case-body .cb-label{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-dark);font-weight:600;margin-bottom:6px;}
-.case-body .cb-item{display:grid;grid-template-columns:28px 1fr;gap:18px;padding:16px 0;border-top:1px solid var(--grey-line);align-items:start;}
-.case-body .cb-item:last-child{border-bottom:1px solid var(--grey-line);}
-.case-body .cb-item .pl{font-family:'Archivo',sans-serif;font-size:17px;color:var(--green-dark);line-height:1.55;}
-.case-body .cb-item p{font-size:16px;color:#555;line-height:1.65;max-width:640px;}
-.case-outcome{margin-top:26px;font-size:16.5px;color:var(--ink);line-height:1.7;max-width:680px;}
-.case-outcome b{color:var(--accent-deep);}
-.case-tag{margin-top:24px;font-family:'Archivo',sans-serif;font-size:15px;font-style:italic;color:#555;padding-left:16px;border-left:2px solid var(--accent);max-width:600px;line-height:1.6;}
-
-/* ============ 10. ABOUT (Founder) ============ */
-.people{padding:100px 0 0;position:relative;background:var(--absolute);overflow:hidden;}
-@media(max-width:640px){.people{padding:70px 0 0;}}
-.people::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(60% 70% at 20% 20%, rgba(58,58,58,.55) 0%, transparent 60%),
-  radial-gradient(50% 60% at 90% 80%, rgba(157,178,198,.22) 0%, transparent 65%);}
-.people .wrap{position:relative;z-index:1;}
-.founder-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:start;}
-@media(min-width:880px){.founder-grid{grid-template-columns:560px 1fr;gap:60px;}}
-.founder-bio{padding-bottom:80px;order:2;}
-@media(min-width:880px){.founder-bio{padding-bottom:100px;padding-top:8px;order:2;}}
-.people .eyebrow{color:#fff;}
-.founder-bio h2{font-size:clamp(28px,3.4vw,40px);margin:16px 0 8px;color:#fff;}
-.founder-bio .fb-sub{font-size:clamp(18px,2vw,22px);color:var(--accent-bright);font-weight:500;letter-spacing:-0.015em;margin-bottom:26px;}
-.founder-card{position:relative;display:flex;flex-direction:column;max-width:100%;order:1;}
-@media(min-width:880px){.founder-card{max-width:560px;order:1;}}
-.founder-card img{width:100%;height:auto;object-fit:cover;display:block;background:transparent;}
-.founder-card .fc-overlay{position:absolute;left:18px;bottom:22px;z-index:2;}
-.founder-card .fc-tag{display:flex;align-items:center;gap:8px;font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.55);}
-.founder-card .fc-tag::before{content:"";width:7px;height:7px;background:var(--accent-bright);}
-.founder-card h3{font-size:20.5px;margin-top:6px;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.55);}
-.founder-bio p{font-size:17px;color:#fff;line-height:1.75;margin-bottom:18px;max-width:640px;}
-.founder-bio p b{color:var(--accent-bright);}
-.founder-bio .fb-note{font-size:16px;color:rgba(255,255,255,.92);border-left:2px solid var(--accent-bright);padding-left:20px;margin-top:18px;}
-.fb-badges{display:flex;gap:22px;align-items:center;margin-top:32px;flex-wrap:wrap;}
-.fb-badges img{height:90px;width:auto;max-width:130px;object-fit:contain;display:block;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));}
-@media(max-width:640px){.fb-badges{gap:14px;margin-top:26px;}.fb-badges img{height:72px;max-width:108px;}}
-
-/* ============ 11. FINAL CTA ============ */
-.cta{position:relative;background:var(--absolute);color:#fff;padding:130px 0 120px;overflow:hidden;}
-.cta-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;z-index:0;opacity:1;}
-.cta::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.3);z-index:1;pointer-events:none;}
-.cta .wrap{position:relative;z-index:2;}
-@media(max-width:640px){.cta{padding:88px 0 78px;}}
-.cta-grid{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;}
-.cta .eyebrow{color:rgba(255,255,255,.95);justify-content:center;text-shadow:0 2px 14px rgba(0,0,0,.85);}
-.cta h2{color:#fff;font-size:clamp(32px,4.6vw,60px);max-width:960px;margin:22px auto 0;text-align:center;text-shadow:0 2px 28px rgba(0,0,0,.9), 0 0 12px rgba(0,0,0,.75);}
-.cta h2 .hl{color:var(--red-bright);}
-.cta p{font-size:18px;color:rgba(255,255,255,.95);max-width:820px;margin:26px auto 0;line-height:1.7;text-align:center;text-shadow:0 2px 22px rgba(0,0,0,.9), 0 0 10px rgba(0,0,0,.7);}
-.cta .cta-actions{display:flex;gap:14px;flex-wrap:wrap;margin:40px auto 0;justify-content:center;align-items:stretch;}
-@media(max-width:640px){.cta .cta-actions{flex-direction:column;align-self:stretch;width:100%;}}
+/* ============ CTA (Engine yellow block) ============ */
+.cta{display:grid;grid-template-columns:minmax(0,1fr);}
+@media(min-width:900px){.cta{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);}}
+.cta-copy{background:var(--y);padding:70px var(--gutter);}
+@media(min-width:900px){.cta-copy{padding:110px 70px 110px max(var(--gutter),calc((100vw - var(--wrap))/4 + var(--gutter)));}}
+.cta h2{font-size:clamp(34px,4.6vw,64px);font-weight:700;line-height:1.02;margin-bottom:26px;}
+.cta p{font-size:17px;line-height:1.75;max-width:540px;margin-bottom:34px;}
+.cta-actions{display:flex;flex-direction:column;gap:14px;}
+@media(min-width:640px){.cta-actions{flex-direction:row;flex-wrap:wrap;}}
+.cta-img{position:relative;min-height:320px;}
+.cta-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;}
 
 /* ============ FOOTER ============ */
-footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);padding:46px 0 0;color:#fff;}
-.foot-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px;flex-wrap:wrap;color:rgba(255,255,255,.62);}
-.foot-tag{font-family:'Archivo',sans-serif;font-size:14.5px;color:rgba(255,255,255,.55);margin-top:10px;max-width:340px;line-height:1.55;}
-.foot-meta{font-size:15px;line-height:1.8;text-align:left;}
-@media(min-width:760px){.foot-meta{text-align:right;}}
-.foot-meta a{color:var(--red-bright);}
-.foot-meta .fm-tag{color:rgba(255,255,255,.55);font-size:13.5px;margin-top:6px;}
-.foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:34px;padding:20px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.5);}
-.foot-legal{display:flex;gap:22px;}
-.foot-legal a:hover{color:#fff;}
-.foot-built a{color:rgba(255,255,255,.5);transition:color .2s ease;}
-.foot-built a:hover{color:var(--accent-bright);}
-.foot-built b{color:rgba(255,255,255,.75);font-weight:600;}
-@media(max-width:640px){.foot-bottom{flex-direction:column;align-items:flex-start;}}
-
-/* footer logo (light) */
-
+footer{background:var(--blue);color:#fff;padding:72px 0 0;}
+.foot{display:grid;grid-template-columns:minmax(0,1fr);gap:30px;align-items:start;padding-bottom:56px;}
+@media(min-width:900px){.foot{grid-template-columns:auto minmax(0,1fr) auto;gap:60px;align-items:center;}}
+.foot .logo-box{margin:0;display:inline-flex;}
+.foot .logo-box img{height:168px;filter:brightness(0) invert(1);}
+.foot-tag b{display:block;font-size:22px;letter-spacing:-0.01em;margin-bottom:8px;color:var(--y);}
+.foot-tag p{color:rgba(255,255,255,.8);font-size:15px;line-height:1.6;}
+.foot-meta{font-size:15px;line-height:1.8;color:rgba(255,255,255,.9);}
+.foot-meta a{color:#fff;border-bottom:2px solid var(--y);}
+.foot-meta a:hover{color:var(--y);}
+.foot-bar{background:rgba(0,0,0,.22);color:#fff;border-top:1px solid rgba(255,255,255,.18);}
+.foot-bar .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;padding-top:18px;padding-bottom:18px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.75);}
+.foot-bar a:hover{color:var(--y);}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease;}
 .rv.in{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){
-  .rv{opacity:1;transform:none;transition:none;}
   html{scroll-behavior:auto;}
-  .audit-video,.hero-video,.ret-video{display:none;}
-  .hero-aurora{animation:none;}
-  .hero-logos .track{animation:none;}
-  .btn::before,.btn::after{transition:none;}
+  .rv{opacity:1;transform:none;transition:none;}
+  .track{animation:none;}
+  .zip-body,.zip-pull,.ph-body,.ph-pull,.tile-img img{transition:none;}
 }
 </style>
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
-<nav>
+<!-- nav -->
+<nav class="nav">
   <div class="nav-inner">
-    <a class="logo" href="#" aria-label="ZIPPER Change Consultancy home">
+      <a class="logo" href="#" aria-label="ZIPPER Change Consultancy home">
       <img src="https://cdn.katalyst-crm.com/a/99bc47ef-8413-869a-4a6d-e2f5e4829ed6" alt="ZIPPER Change Consultancy">
     </a>
     <div class="nav-links" role="navigation" aria-label="Primary">
@@ -502,622 +392,481 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);padding
       <a href="#case">Case Study</a>
       <a href="#about">About Rita</a>
     </div>
-    <a href="#cta" class="btn btn-ghost-light nav-cta-desktop">Book a Partner Call <span class="arr">→</span></a>
-    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="#cta" class="nav-cta">Book a Partner Call</a>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
-<!-- mobile menu -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <a class="mm-link" href="#problem">The Problem</a>
-  <a class="mm-link" href="#services">Services</a>
-  <a class="mm-link" href="#method">The Method</a>
-  <a class="mm-link" href="#case">Case Study</a>
-  <a class="mm-link" href="#about">About Rita</a>
-  <a class="mm-link" href="#risk-check">AI Adoption Risk Check</a>
-  <a class="btn btn-green" href="#cta">Book a Partner Call <span class="arr">→</span></a>
+  <a class="mm" href="#problem">The Problem</a>
+  <a class="mm" href="#services">Services</a>
+  <a class="mm" href="#method">The Method</a>
+  <a class="mm" href="#case">Case Study</a>
+  <a class="mm" href="#about">About Rita</a>
+  <a class="mm" href="#risk-check">AI Adoption Risk Check</a>
+  <a class="btn btn-black" href="#cta">Book a Partner Call →</a>
 </div>
 
-<!-- ============ 1. HERO ============ -->
+<!-- ============ HERO ============ -->
 <header class="hero">
-  <div class="hero-bg" aria-hidden="true">
-    <img class="hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260909_112335_2ad82935-4de7-4267-8a99-fe7bc3020638.png" alt="">
-    <div class="hero-aurora"></div>
-    <div class="hero-scrim"></div>
-  </div>
-  <div class="hero-content">
-    <p class="hero-kicker">Human-Side AI Adoption Strategy</p>
-    <h1>You build the solution.<br>I make sure people use it.</h1>
+  <img class="hero-bg" src="https://cdn.katalyst-crm.com/a/a476da95-3d74-ac56-af1c-96397d101cb0" alt="Consultant leading a strategy session">
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="mono hero-kicker">Human-Side AI Adoption Strategy</p>
+    <h1>You build the solution. <b>I make sure people use it.</b></h1>
     <p class="hero-lead">Adoption strategy for AI and technology consultancies whose clients need more than a successful go-live.</p>
-    <div class="hero-sub">
-      <p>Your team can deliver the platform, the integration and the training plan. What decides the outcome is whether sponsors keep reinforcing the change, whether managers can answer their teams' questions, and whether people stop reaching for the old spreadsheet.</p>
-      <p>I diagnose the human conditions behind adoption and hand you the strategy that closes the gap. Alongside your team, or quietly under your brand.</p>
-    </div>
     <div class="hero-actions">
-      <a href="#cta" class="btn btn-light">Book a Partner Call <span class="arr">→</span></a>
-      <a href="#risk-check" class="btn btn-ghost-light">Get the AI Adoption Risk Check</a>
+      <a href="#cta" class="btn btn-black">Book a Partner Call →</a>
+      <a href="#risk-check" class="btn btn-hero-ghost">Get the AI Adoption Risk Check</a>
     </div>
   </div>
-  <div class="hero-logos">
-    <p class="hero-logos-label">Fifteen years inside enterprise transformation, including work connected with:</p>
+
+  <div class="logos hero-logos">
+    <div class="wrap"><p class="mono logos-label">Fifteen years inside enterprise transformation, including work connected with:</p></div>
     <div class="track" aria-hidden="true">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/b91ed1d3-0e1f-f41b-806e-0c0cff76035c" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/2dd6185c-cac1-e467-5b4e-90d0e6354794" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/29fe9007-26ad-3e9c-653a-0bbf881e2e51" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/0c51a96a-02ac-659c-0501-511715a40968" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/53262232-7ad0-d6d6-8ae2-92b1cb88196e" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/89cce2a3-e8ed-c8a9-8d59-654db0187425" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/9a49a50d-7a62-7f80-abaa-4e959a8a96e5" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/0813a441-3ecc-ae8c-a3d2-422d5709a4f0" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/b91ed1d3-0e1f-f41b-806e-0c0cff76035c" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/2dd6185c-cac1-e467-5b4e-90d0e6354794" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/29fe9007-26ad-3e9c-653a-0bbf881e2e51" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/0c51a96a-02ac-659c-0501-511715a40968" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/53262232-7ad0-d6d6-8ae2-92b1cb88196e" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/89cce2a3-e8ed-c8a9-8d59-654db0187425" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/9a49a50d-7a62-7f80-abaa-4e959a8a96e5" alt="">
-      <img class="client-logo" src="https://cdn.katalyst-crm.com/a/0813a441-3ecc-ae8c-a3d2-422d5709a4f0" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/b91ed1d3-0e1f-f41b-806e-0c0cff76035c" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/2dd6185c-cac1-e467-5b4e-90d0e6354794" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/29fe9007-26ad-3e9c-653a-0bbf881e2e51" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/0c51a96a-02ac-659c-0501-511715a40968" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/53262232-7ad0-d6d6-8ae2-92b1cb88196e" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/89cce2a3-e8ed-c8a9-8d59-654db0187425" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/9a49a50d-7a62-7f80-abaa-4e959a8a96e5" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/0813a441-3ecc-ae8c-a3d2-422d5709a4f0" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/b91ed1d3-0e1f-f41b-806e-0c0cff76035c" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/2dd6185c-cac1-e467-5b4e-90d0e6354794" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/29fe9007-26ad-3e9c-653a-0bbf881e2e51" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/0c51a96a-02ac-659c-0501-511715a40968" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/53262232-7ad0-d6d6-8ae2-92b1cb88196e" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/89cce2a3-e8ed-c8a9-8d59-654db0187425" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/9a49a50d-7a62-7f80-abaa-4e959a8a96e5" alt="">
+      <img src="https://cdn.katalyst-crm.com/a/0813a441-3ecc-ae8c-a3d2-422d5709a4f0" alt="">
     </div>
   </div>
 </header>
 
-<!-- ============ 2. THE PROBLEM ============ -->
+<!-- ============ THE GAP ============ -->
+<section class="gap" id="gap">
+  <div class="gap-left rv">
+    <span class="mono">The Gap</span>
+    <p class="gap-lead"><strong>Your team can deliver the platform, the integration and the training plan.</strong> What decides the outcome is whether sponsors keep reinforcing the change, whether managers can answer their teams' questions, and whether people stop reaching for the old spreadsheet.</p>
+    <div class="ruled">
+      <p>I diagnose the human conditions behind adoption and hand you the strategy that closes the gap. Alongside your team, or quietly under your brand.</p>
+      <a href="#services" class="line-link">How we work together</a>
+    </div>
+  </div>
+  <aside class="gap-right rv">
+    <img class="zip-mark" src="https://cdn.katalyst-crm.com/a/536c33bf-57ea-a432-acae-df1e29843262" alt="">
+    <h2>Fifteen years inside enterprise transformation</h2>
+    <p>Change and adoption leadership on programs where failure was not an option.</p>
+    <ul class="creds">
+      <li><span>Certifications</span><b>PMP · CCMP · PMI-CPMAI</b></li>
+      <li><span>Employees reached by transformations led</span><b>3,500+</b></li>
+      <li><span>IABC awards for communications excellence</span><b>2</b></li>
+      <li><span>MBA</span><b>Georgia State</b></li>
+    </ul>
+    <a href="#about" class="line-link">About Rita</a>
+  </aside>
+</section>
+
+<!-- ============ THE PROBLEM ============ -->
 <section class="problem" id="problem">
   <div class="wrap">
     <div class="prob-head rv">
-      <span class="eyebrow">The Problem</span>
+      <span class="mono">The Problem</span>
       <h2>The call nobody wants.</h2>
       <p class="sub">The system works. The client says it isn't working.</p>
       <p class="desc">You delivered on scope. Six months later, nobody is using it. The platform is live. The training was completed. And now the sponsor is asking where the return went, while half the team quietly runs the old spreadsheet next to the new screen. The technology is rarely the reason. The organization was never prepared to work differently, and the partner who built the solution is the one holding the blame.</p>
     </div>
-    <p class="prob-label rv">What usually went wrong</p>
-    <div class="prob-grid">
-      <div class="prob-cell rv"><span class="pn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 5L7 9H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l10 4V5z"/><path d="M7 15v3a1 1 0 0 0 1 1h2v-4"/><path d="M20 9c.8.8.8 5.2 0 6" stroke-dasharray="2 2"/></svg></span><p>Sponsors announced the change once, then went quiet.</p></div>
-      <div class="prob-cell rv"><span class="pn" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="6" rx="0.5"/><circle cx="12" cy="12" r="2"/><path d="M8 22v-4a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4"/></svg></span><p>Managers were asked to carry a transition nobody prepared them for.</p></div>
-      <div class="prob-cell rv"><span class="pn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4h6v3H9z"/><path d="M15 5h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3"/><path d="M8 12l1.5 1.5L13 10"/><path d="M8 17l1.5 1.5L13 15"/></svg></span><p>People were trained on features instead of on how their day changes.</p></div>
-      <div class="prob-cell rv"><span class="pn" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="2" y1="11" x2="22" y2="11" stroke-dasharray="1.5 2.5"/><path d="M10 11l2-5 2 5"/><path d="M5 11h14l-2 10H7z"/></svg></span><p>Fear about AI and job security was never named out loud, so it went underground.</p></div>
-      <div class="prob-cell rv"><span class="pn" aria-hidden="true"><svg viewBox="0 0 24 24"><line x1="6" y1="3" x2="6" y2="21"/><path d="M6 4h12l-3 3.5L18 11H6"/><line x1="3" y1="21" x2="14" y2="21"/></svg></span><p>Nobody owned adoption after the launch date.</p></div>
-      <div class="prob-cell quote rv"><p>Every one of those failures is predictable. Which means every one of them is preventable. <strong>That is the work.</strong></p></div>
+  </div>
+  <div class="wrap">
+    <div class="mosaic">
+      <div class="tile t-yellow m-wrong rv">
+        <span class="mono tile-label">What usually went wrong</span>
+        <ul class="wrong-list">
+          <li><svg viewBox="0 0 24 24"><path d="M17 5L7 9H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l10 4V5z"/><path d="M7 15v3a1 1 0 0 0 1 1h2v-4"/><path d="M20 9c.8.8.8 5.2 0 6" stroke-dasharray="2 2"/></svg><span>Sponsors announced the change once, then went quiet.</span></li>
+          <li><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="6" rx="0.5"/><circle cx="12" cy="12" r="2"/><path d="M8 22v-4a4 4 0 0 1 8 0v4"/></svg><span>Managers were asked to carry a transition nobody prepared them for.</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 4h6v3H9z"/><path d="M15 5h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3"/><path d="M8 12l1.5 1.5L13 10"/><path d="M8 17l1.5 1.5L13 15"/></svg><span>People were trained on features instead of on how their day changes.</span></li>
+          <li><svg viewBox="0 0 24 24"><line x1="2" y1="11" x2="22" y2="11" stroke-dasharray="1.5 2.5"/><path d="M10 11l2-5 2 5"/><path d="M5 11h14l-2 10H7z"/></svg><span>Fear about AI and job security was never named out loud, so it went underground.</span></li>
+          <li><svg viewBox="0 0 24 24"><line x1="6" y1="3" x2="6" y2="21"/><path d="M6 4h12l-3 3.5L18 11H6"/><line x1="3" y1="21" x2="14" y2="21"/></svg><span>Nobody owned adoption after the launch date.</span></li>
+        </ul>
+      </div>
+      <div class="tile tile-img t-grey m-flat rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_6652a17e-ed7b-4380-971b-eeb29a276709.png" alt="Two people mapping a workflow together"></div>
+      <div class="tile t-blue m-punch rv">
+        <span class="mono" style="color:var(--y)">The way out</span>
+        <p>Every one of those failures is predictable. Which means every one of them is preventable. <strong>That is the work.</strong></p>
+      </div>
+      <div class="tile tile-img m-big rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_b9657aec-02de-4eb9-966e-6c8fd93fb58e.png" alt="Employee confidently using new software"></div>
     </div>
   </div>
 </section>
 
-<!-- ============ 3. SERVICES ============ -->
+<!-- ============ SERVICES ============ -->
 <section class="services" id="services">
   <div class="wrap">
-    <div class="svc-head rv">
-      <div>
-        <span class="eyebrow u">Services and Outcomes.</span>
+    <div class="svc-layout">
+      <div class="svc-intro rv">
+        <span class="mono">Services and Outcomes</span>
         <h2>How we work together.</h2>
-        <p class="lead">Three ways to add adoption strategy to your engagement. Fixed scope. Defined deliverables. Available directly, collaboratively, or white-labeled under your brand.</p>
+        <p>Three ways to add adoption strategy to your engagement.</p>
+        <p>Fixed scope. Defined deliverables. Available directly, collaboratively, or white-labeled under your brand.</p>
+        <a href="#cta" class="line-link">Discuss scope for your engagement</a>
+        <div class="svc-arrows">
+          <button class="circ svc-prev" aria-label="Previous service"><svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg></button>
+          <button class="circ svc-next" aria-label="Next service"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+        </div>
       </div>
-      <span class="go" aria-hidden="true">↗</span>
-    </div>
 
-    <div class="start-here rv">
-      <div class="sh-text">
-        <span class="sh">START HERE</span>
-        <p>Not sure which engagement fits? Before your next proposal, run the <b>free AI Adoption Risk Check</b>. Ten minutes, and you will know where the human-side risk sits on your current engagement.</p>
-      </div>
-      <div class="sh-actions">
-        <a href="#risk-check" class="btn btn-green">Take the AI Adoption Risk Check <span class="arr">→</span></a>
-        <a href="#cta" class="btn btn-ghost-w">Discuss Scope for Your Engagement <span class="arr">→</span></a>
-      </div>
-    </div>
-
-    <div class="svc-carousel" role="region" aria-roledescription="carousel" aria-label="Services">
-      <div class="svc-viewport">
-        <div class="svc-track">
-
-          <!-- 01 -->
-          <article class="svc-card rv" role="group" aria-roledescription="slide" aria-label="1 of 3">
-            <div class="svc-left">
-              <span class="svc-num">01.</span>
-              <div class="svc-imgwrap"><img class="svc-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260909_112334_0d5f3661-afdb-49a7-ab64-eb7adde47ab4.png" alt="Discovery workshop in progress"></div>
-              <div class="svc-meta">
-                <p class="ml">Best For</p>
-                <p class="mi">Partners who want to know what will stop people using it, before the build locks in.</p>
+      <div class="svc-track rv" tabindex="0" aria-label="Services">
+        <article class="svc-card">
+          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_09960e96-f720-4ff4-976f-a9dce2edd2de.png" alt="Discovery interview" loading="lazy"><span class="mono svc-tag">01 · Assessment</span></div>
+          <div class="svc-body">
+            <span class="tick"></span>
+            <h3>AI Adoption Readiness Assessment</h3>
+            <p class="sub">Find out what will stop people using it, before the build locks in.</p>
+            <div class="zip">
+              <div class="zip-body">
+                <ul>
+                  <li>Discovery with you and the client sponsor</li>
+                  <li>Stakeholder interviews and listening sessions</li>
+                  <li>Role and workflow impact review</li>
+                  <li>Leadership and sponsorship alignment review</li>
+                  <li>An honest read on resistance, confidence and capability gaps</li>
+                </ul>
+                <p class="receive"><b>You receive</b> a prioritized findings summary that names the adoption risks worth addressing first, and the strengths and champions already in the building.</p>
               </div>
+              <button class="zip-toggle" type="button" aria-expanded="false" data-more="What's included" data-less="Zip it up"><span class="zip-track"><span class="zip-pull"><span class="zip-glyph"></span></span></span><span class="zip-label">What's included</span></button>
             </div>
-            <div class="svc-body">
-              <h3>AI Adoption Readiness Assessment</h3>
-              <p class="sub">Find out what will stop people using it, before the build locks in.</p>
-              <p class="desc">A structured diagnostic of the human conditions underneath the rollout. Discovery with you and the client sponsor, stakeholder interviews and listening sessions, and an honest read on where adoption risk actually sits.</p>
-              <p class="includes-label">Includes</p>
-              <ul class="includes">
-                <li>Discovery with you and the client sponsor</li>
-                <li>Stakeholder interviews and listening sessions</li>
-                <li>Role and workflow impact review</li>
-                <li>Leadership and sponsorship alignment review</li>
-                <li>An honest read on resistance, confidence and capability gaps</li>
-              </ul>
-              <p class="deliverable"><b>You receive</b> a prioritized findings summary that names the adoption risks worth addressing first, and the strengths and champions already in the building.</p>
-              <a href="#cta" class="btn btn-dark">Discuss This Engagement <span class="arr">→</span></a>
-            </div>
-          </article>
+            <div class="btn-wrap"><a href="#cta" class="btn btn-ghost">Discuss this engagement</a></div>
+          </div>
+        </article>
 
-          <!-- 02 -->
-          <article class="svc-card rv" role="group" aria-roledescription="slide" aria-label="2 of 3">
-            <div class="svc-left">
-              <span class="svc-num">02.</span>
-              <div class="svc-imgwrap"><img class="svc-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260909_112334_84d3ff6b-b4a6-4068-99cd-d9eaf7f9b885.png" alt="Rollout plan on a whiteboard"></div>
-              <div class="svc-meta">
-                <p class="ml">Best For</p>
-                <p class="mi">Programs where the strategy needs to be written so your delivery team can execute it.</p>
+        <article class="svc-card">
+          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_768e78f4-8e4d-4bcf-b596-9680e70530ee.png" alt="Team planning a rollout roadmap" loading="lazy"><span class="mono svc-tag">02 · Blueprint</span></div>
+          <div class="svc-body">
+            <span class="tick"></span>
+            <h3>Adoption Rollout Blueprint</h3>
+            <p class="sub">The strategy your delivery team executes.</p>
+            <div class="zip">
+              <div class="zip-body">
+                <ul>
+                  <li>The adoption strategy for the initiative, tailored to the workforce and the culture</li>
+                  <li>Sponsor and manager expectations, written so they have a script plan to be held to</li>
+                  <li>Communication sequencing across the program timeline</li>
+                  <li>Role-based enablement requirements</li>
+                  <li>Champion structure and resistance response</li>
+                  <li>Adoption measures and implementation guidelines your team can run</li>
+                </ul>
+                <p class="receive"><b>You receive</b> a rollout blueprint with actions, owners and timing, scoped to a 30, 60 or 90 day window.</p>
               </div>
+              <button class="zip-toggle" type="button" aria-expanded="false" data-more="What's included" data-less="Zip it up"><span class="zip-track"><span class="zip-pull"><span class="zip-glyph"></span></span></span><span class="zip-label">What's included</span></button>
             </div>
-            <div class="svc-body">
-              <h3>Adoption Rollout Blueprint</h3>
-              <p class="sub">The strategy your delivery team executes.</p>
-              <p class="desc">The rollout blueprint your delivery team runs. Scoped to a 30, 60 or 90 day window, tailored to the workforce and the culture — with actions, owners and timing built in.</p>
-              <p class="includes-label">Includes</p>
-              <ul class="includes">
-                <li>The adoption strategy for the initiative, tailored to the workforce and the culture</li>
-                <li>Sponsor and manager expectations, written so they have a script plan to be held to</li>
-                <li>Communication sequencing across the program timeline</li>
-                <li>Role-based enablement requirements</li>
-                <li>Champion structure and resistance response</li>
-                <li>Adoption measures and implementation guidelines your team can run</li>
-              </ul>
-              <p class="deliverable"><b>You receive</b> a rollout blueprint with actions, owners and timing, scoped to a 30, 60 or 90 day window.</p>
-              <a href="#cta" class="btn btn-dark">Discuss This Engagement <span class="arr">→</span></a>
-            </div>
-          </article>
+            <div class="btn-wrap"><a href="#cta" class="btn btn-ghost">Discuss this engagement</a></div>
+          </div>
+        </article>
 
-          <!-- 03 -->
-          <article class="svc-card rv" role="group" aria-roledescription="slide" aria-label="3 of 3">
-            <div class="svc-left">
-              <span class="svc-num">03.</span>
-              <div class="svc-imgwrap"><img class="svc-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260909_112334_8999ec4c-275b-422d-8a40-89a65915f444.png" alt="Advisory session between two consultants"></div>
-              <div class="svc-meta">
-                <p class="ml">Best For</p>
-                <p class="mi">Programs that need senior adoption judgment on call for the length of the engagement.</p>
+        <article class="svc-card">
+          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_0e2b4c34-4b9c-43ad-b16d-689453939003.png" alt="Senior advisor coaching a manager" loading="lazy"><span class="mono svc-tag">03 · Advisory</span></div>
+          <div class="svc-body">
+            <span class="tick"></span>
+            <h3>Advisory Partner</h3>
+            <p class="sub">Senior adoption judgment on call for the length of the program.</p>
+            <div class="zip">
+              <div class="zip-body">
+                <ul>
+                  <li>Standing advisory sessions with your delivery lead</li>
+                  <li>Adoption risk reviews at program checkpoints</li>
+                  <li>Review of your communications, training and enablement materials</li>
+                  <li>Sponsor and manager coaching</li>
+                  <li>Client meeting and proposal support</li>
+                  <li>Course correction as the rollout moves</li>
+                </ul>
+                <p class="receive"><b>You receive</b> continuity of judgment across the engagement, on a defined monthly commitment.</p>
               </div>
+              <button class="zip-toggle" type="button" aria-expanded="false" data-more="What's included" data-less="Zip it up"><span class="zip-track"><span class="zip-pull"><span class="zip-glyph"></span></span></span><span class="zip-label">What's included</span></button>
             </div>
-            <div class="svc-body">
-              <h3>Advisory Partner</h3>
-              <p class="sub">Senior adoption judgment on call for the length of the program.</p>
-              <p class="desc">Continuity of adoption judgment across the engagement, on a defined monthly commitment. Course correction as the rollout moves, and coaching for the people who need it.</p>
-              <p class="includes-label">Includes</p>
-              <ul class="includes">
-                <li>Standing advisory sessions with your delivery lead</li>
-                <li>Adoption risk reviews at program checkpoints</li>
-                <li>Review of your communications, training and enablement materials</li>
-                <li>Sponsor and manager coaching</li>
-                <li>Client meeting and proposal support</li>
-                <li>Course correction as the rollout moves</li>
-              </ul>
-              <p class="deliverable"><b>You receive</b> continuity of judgment across the engagement, on a defined monthly commitment.</p>
-              <a href="#cta" class="btn btn-dark">Discuss This Engagement <span class="arr">→</span></a>
-            </div>
-          </article>
-
-        </div>
+            <div class="btn-wrap"><a href="#cta" class="btn btn-ghost">Discuss this engagement</a></div>
+          </div>
+        </article>
       </div>
-      <button class="svc-arrow svc-prev" aria-label="Previous service"><svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"/></svg></button>
-      <button class="svc-arrow svc-next" aria-label="Next service"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
-      <div class="svc-dots" role="tablist" aria-label="Choose service">
-        <button class="svc-dot active" role="tab" aria-label="Show service 1" aria-selected="true"></button>
-        <button class="svc-dot" role="tab" aria-label="Show service 2" aria-selected="false"></button>
-        <button class="svc-dot" role="tab" aria-label="Show service 3" aria-selected="false"></button>
-      </div>
-    </div>
-
-    <div class="svc-close-cta rv">
-      <a href="#cta" class="btn btn-outline">Discuss Scope for Your Engagement <span class="arr">→</span></a>
     </div>
   </div>
 </section>
 
-<!-- ============ 4. LEAD MAGNET / RISK CHECK ============ -->
-<section class="audit" id="risk-check">
-  <img class="audit-bg" src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260909_112335_031803b9-0c06-4bb9-ad47-ab6b50a310c5.png" alt="" aria-hidden="true">
-  <div class="audit-overlay" aria-hidden="true"></div>
+<!-- ============ RISK CHECK ============ -->
+<section class="split risk" id="risk-check">
+  <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065721_242d94b2-f255-4aeb-aeb8-2f85dd0d49bc.png" alt="Consultant reviewing a readiness checklist" loading="lazy"></div>
+  <div class="tile t-grey rv">
+    <span class="mono tile-label">Before your next proposal</span>
+    <p class="kicker">The AI Adoption Risk Check</p>
+    <h2 class="big-text">Is your client ready to use it, or only ready to launch it?</h2>
+    <p>A short diagnostic for consultants, technology firms and implementation teams. Answer it in ten minutes and you will know where the human-side risk sits on your current engagement: sponsor alignment, employee trust, role and workflow clarity, communication, manager support, training, resistance and who owns adoption after launch.</p>
+    <p class="outcome">You get your risk profile back, along with the two or three things worth addressing first.</p>
+    <div><a href="#" class="btn btn-black">Take the AI Adoption Risk Check →</a></div>
+  </div>
+</section>
+
+<!-- ============ THE METHOD ============ -->
+<section class="method" id="method">
+  <div class="split">
+    <div class="tile tile-img rv">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_35d74c4e-cd5e-4694-afbd-bd4b6a213a17.png" alt="Two teams celebrating together across a table" loading="lazy">
+      <p class="img-tag">A zipper has two sides, and it only works when both move forward together.</p>
+    </div>
+    <div class="tile t-white rv">
+      <span class="mono tile-label">The Method</span>
+      <h2>The Zipper Change Approach.</h2>
+      <p class="sub">Two sides. One successful adoption.</p>
+      <p class="lead">One side is the technology: the platform, the data, the integrations, the governance, the deployment. The other side is the people: leadership, trust, role clarity, confidence, and the behavior that has to change. Pull one side ahead of the other and nothing closes.</p>
+      <div class="phases">
+        <div class="phase open">
+          <button class="ph-head" type="button" aria-expanded="true"><span class="ph-num">1 – <b>Assess</b></span></button>
+          <div class="ph-body"><p>I find what will help or block adoption. Sponsor alignment, employee fear, role and workflow impact, capability gaps, and the champions and strengths the organization already has. Findings become a prioritized roadmap rather than a diagnosis.</p></div>
+        </div>
+        <div class="phase">
+          <button class="ph-head" type="button" aria-expanded="false"><span class="ph-num">2 – <b>Activate</b></span></button>
+          <div class="ph-body"><p>The roadmap becomes a sequenced rollout plan with owners and timing, written so your delivery team can run it: leadership alignment, manager enablement, targeted communication, role-based enablement, champion activation and resistance response.</p></div>
+        </div>
+        <div class="phase">
+          <button class="ph-head" type="button" aria-expanded="false"><span class="ph-num">3 – <b>Sustain</b></span></button>
+          <div class="ph-body"><p>Adoption is designed to outlast the launch date. Reinforcement, measurement and course correction are planned in from the start rather than improvised after go-live.</p></div>
+        </div>
+      </div>
+      <p class="close">Two connected sides. <b>One successful adoption.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY DIFFERENT ============ -->
+<section class="diff" id="different">
   <div class="wrap">
-    <div class="audit-grid">
-      <span class="eyebrow rv">Before Your Next Proposal</span>
-      <div class="rv">
-        <p class="subhead">The AI Adoption Risk Check</p>
-        <h2>Is your client ready to use it, <span class="hl">or only ready to launch it?</span></h2>
-        <p>A short diagnostic for consultants, technology firms and implementation teams. Answer it in ten minutes and you will know where the human-side risk sits on your current engagement: sponsor alignment, employee trust, role and workflow clarity, communication, manager support, training, resistance and who owns adoption after launch.</p>
-        <p class="audit-outcome">You get your risk profile back, along with the two or three things worth addressing first.</p>
-        <div class="audit-actions">
-          <a href="#" class="btn btn-green">Take the AI Adoption Risk Check <span class="arr">→</span></a>
+    <div class="diff-grid">
+      <div class="tile tile-img d-photo rv"><img src="https://cdn.katalyst-crm.com/a/bf0c3ae6-067f-a224-2b7f-cced0c54e706" alt="Working alongside a delivery team" loading="lazy"></div>
+      <div class="tile t-yellow d-head rv">
+        <span class="mono">Why We're Different</span>
+        <div>
+          <h2>Why partners bring me in.</h2>
+          <p class="sub">Adoption expertise on your team, without the headcount.</p>
         </div>
       </div>
+      <div class="tile t-white d-item rv" style="border:1px solid var(--line)">
+        <svg class="d-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 5 9-5" opacity=".55"/></svg>
+        <h3>I have sat on the delivery side.</h3>
+        <p>I came up through project and program delivery before change management, so readiness gets built into the plan rather than bolted on after the decisions are already made.</p>
+      </div>
+      <div class="tile t-blue d-item rv">
+        <svg class="d-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 11.5l2 2 4-4"/></svg>
+        <h3>Your client relationship stays yours.</h3>
+        <p>I do not solicit your accounts. Communication and decision protocols are agreed before I start, and I can work entirely under your brand.</p>
+      </div>
+      <div class="tile t-grey d-item rv">
+        <svg class="d-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4z"/><path d="M14 3v4h4"/><line x1="5.5" y1="20" x2="18.5" y2="4.5"/></svg>
+        <h3>No template change plan.</h3>
+        <p>Standard playbooks get applied to every client and are customized to them. A plant floor, a finance team and a procurement group need different strategies that still add up to one rollout.</p>
+      </div>
+      <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_d6349884-ed47-4330-96e1-d1b7f59c8829.png" alt="Employees laughing during a training workshop" loading="lazy"></div>
+      <div class="tile t-yellow d-item rv">
+        <svg class="d-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l1.5 1.5L8 5"/><path d="M4 12l1.5 1.5L8 10"/><path d="M4 18l1.5 1.5L8 16"/><line x1="11" y1="6" x2="20" y2="6"/><line x1="11" y1="12" x2="20" y2="12"/><line x1="11" y1="18" x2="16" y2="18"/><path d="M17.5 16l2.5 2-2.5 2"/></svg>
+        <h3>Strategy that names the actions.</h3>
+        <p>Every engagement ends with a sequence, owners and timing. Not a report that gets read once and filed.</p>
+      </div>
+      <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_0ac48456-dc24-4382-9fc5-d273273486c9.png" alt="Consulting team smiling around a laptop" loading="lazy"></div>
     </div>
   </div>
 </section>
 
-<!-- ============ 5. THE METHOD ============ -->
-<section class="approach" id="method">
-  <div class="wrap">
-    <div class="appr-grid">
-      <div class="rv appr-col">
-        <span class="eyebrow">The Method</span>
-        <p class="method-tag">A zipper has two sides, and it only works when both move forward together.</p>
-        <div class="appr-media">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260909_112334_20a9fdbf-0b08-4c7c-a471-40b4db870192.png" alt="Two sides of a change program moving together">
-        </div>
-      </div>
-      <div class="appr-right rv">
-        <h2>The Zipper Change Approach.</h2>
-        <p class="sub">Two sides. One successful adoption.</p>
-        <p class="lead">One side is the technology: the platform, the data, the integrations, the governance, the deployment. The other side is the people: leadership, trust, role clarity, confidence, and the behavior that has to change. Pull one side ahead of the other and nothing closes.</p>
-        <p class="appr-label">How the Zipper Approach works</p>
-        <div class="appr-step">
-          <div class="sn"><small>Phase 01</small>Assess</div>
-          <div class="sd">I find what will help or block adoption. Sponsor alignment, employee fear, role and workflow impact, capability gaps, and the champions and strengths the organization already has. Findings become a prioritized roadmap rather than a diagnosis.</div>
-        </div>
-        <div class="appr-step">
-          <div class="sn"><small>Phase 02</small>Activate</div>
-          <div class="sd">The roadmap becomes a sequenced rollout plan with owners and timing, written so your delivery team can run it: leadership alignment, manager enablement, targeted communication, role-based enablement, champion activation and resistance response.</div>
-        </div>
-        <div class="appr-step">
-          <div class="sn"><small>Phase 03</small>Sustain</div>
-          <div class="sd">Adoption is designed to outlast the launch date. Reinforcement, measurement and course correction are planned in from the start rather than improvised after go-live.</div>
-        </div>
-        <p class="appr-close">Two connected sides. <span class="hl">One successful adoption.</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 6. WHY WE'RE DIFFERENT ============ -->
-<section class="adv" id="different">
-  <div class="wrap">
-    <div class="adv-head rv">
-      <span class="eyebrow u">Why We're Different.</span>
-      <div>
-        <h2>Why partners bring me in.</h2>
-        <p class="sub">Adoption expertise on your team, without the headcount.</p>
-      </div>
-    </div>
-    <div class="adv-grid">
-      <div class="adv-media rv">
-        <img src="https://cdn.katalyst-crm.com/a/bf0c3ae6-067f-a224-2b7f-cced0c54e706" alt="Working alongside a delivery team">
-      </div>
-      <div class="adv-items">
-        <details class="adv-item rv" open>
-          <summary><h3>I have sat on the delivery side.</h3></summary>
-          <p>I came up through project and program delivery before change management, so readiness gets built into the plan rather than bolted on after the decisions are already made.</p>
-        </details>
-        <details class="adv-item rv">
-          <summary><h3>Your client relationship stays yours.</h3></summary>
-          <p>I do not solicit your accounts. Communication and decision protocols are agreed before I start, and I can work entirely under your brand.</p>
-        </details>
-        <details class="adv-item rv">
-          <summary><h3>No template change plan.</h3></summary>
-          <p>Standard playbooks get applied to every client and are customized to them. A plant floor, a finance team and a procurement group need different strategies that still add up to one rollout.</p>
-        </details>
-        <details class="adv-item rv">
-          <summary><h3>Strategy that names the actions.</h3></summary>
-          <p>Every engagement ends with a sequence, owners and timing. Not a report that gets read once and filed.</p>
-        </details>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 7. BELIEF (dark split) ============ -->
-<section class="retention" id="belief">
-  <div class="ret-media rv">
-    <img class="ret-bg" src="https://cdn.katalyst-crm.com/a/c1360766-c692-5204-19e9-e13270a6c30c" alt="" aria-hidden="true">
-    <div class="ret-media-text">
-      <span class="eyebrow">Why This Exists</span>
-      <h2>Technology and people <span class="hl">have to move forward together.</span></h2>
-    </div>
-  </div>
-  <div class="ret-body rv">
+<!-- ============ BELIEF ============ -->
+<section class="split belief" id="belief">
+  <div class="tile tile-img rv"><img src="https://cdn.katalyst-crm.com/a/c1360766-c692-5204-19e9-e13270a6c30c" alt="" loading="lazy"></div>
+  <div class="tile t-blue rv">
+    <span class="mono">Why This Exists</span>
+    <h2>Technology and people have to move forward together.</h2>
     <p>I spent fifteen years watching organizations invest heavily in a system and treat the people expected to use it as a communications task at the end of the plan. The pattern never changed. The technology worked. The training happened. And the morning after go-live, people went back to what they knew.</p>
-    <p>That gap is not a training problem and it is not a communications problem. It is an adoption problem, and it can be designed for. AI has only made it more urgent, because AI changes how people make decisions, how they work, and what they believe their role is worth.</p>
-    <p>A solution can work exactly as designed and still fail to deliver value.</p>
-    <p class="ret-close">The real test of transformation is <span class="hl">what people do differently after the project team leaves.</span></p>
+    <div class="zip">
+      <div class="zip-body">
+        <p>That gap is not a training problem and it is not a communications problem. It is an adoption problem, and it can be designed for. AI has only made it more urgent, because AI changes how people make decisions, how they work, and what they believe their role is worth.</p>
+        <p>A solution can work exactly as designed and still fail to deliver value.</p>
+      </div>
+      <button class="zip-toggle" type="button" aria-expanded="false"><span class="zip-track"><span class="zip-pull"><span class="zip-glyph"></span></span></span><span class="zip-label">Read more</span></button>
+    </div>
+    <p class="close">The real test of transformation is <b>what people do differently after the project team leaves.</b></p>
   </div>
 </section>
 
-<!-- ============ 8. STAT BAND ============ -->
+<!-- ============ STATS ============ -->
 <section class="stats">
-  <img class="stats-bg" src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260909_132338_253890de-8465-4e97-94a1-aca2e3e124b1.png" alt="" aria-hidden="true">
-  <div class="stats-overlay" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="stats-header rv">
-      <span class="eyebrow">Stat Band</span>
-      <p class="stats-intro">From a recent enterprise rollout — the numbers behind the case study below.</p>
+    <div class="stats-photo rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_f745f91e-a204-4d12-afde-2678caff5721.png" alt="Bright modern manufacturing facility" loading="lazy"></div>
+    <div class="stat-grid">
+      <div class="stat t-yellow rv"><span class="stat-num" data-count="3">0</span><p class="stat-label">Manufacturing facilities taken live</p></div>
+      <div class="stat t-white rv" style="border:1px solid var(--line)"><span class="stat-num" data-count="3000">0</span><p class="stat-label">Users prepared for a new way of working</p></div>
+      <div class="stat t-grey rv"><span class="stat-num" data-count="200" data-suffix="+">0</span><p class="stat-label">Business functions carried across</p></div>
+      <div class="stat t-blue rv"><span class="stat-num" data-count="10.5" data-decimals="1" data-prefix="+" data-suffix="%">0</span><p class="stat-label">Improvement in employee attitudes toward adoption</p></div>
     </div>
-    <div class="stats-row">
-      <div class="stat-item rv">
-        <span class="stat-num" data-count="3" data-decimals="0">0</span>
-        <p class="stat-label">Manufacturing facilities taken live</p>
-      </div>
-      <div class="stat-item rv">
-        <span class="stat-num" data-count="3000" data-decimals="0">0</span>
-        <p class="stat-label">Users prepared for a new way of working</p>
-      </div>
-      <div class="stat-item rv">
-        <span class="stat-num" data-count="200" data-decimals="0" data-suffix="+">0</span>
-        <p class="stat-label">Business functions carried across</p>
-      </div>
-      <div class="stat-item rv">
-        <span class="stat-num" data-count="10.5" data-decimals="1" data-prefix="+" data-suffix="%">0</span>
-        <p class="stat-label">Improvement in employee attitudes toward adoption</p>
-      </div>
-    </div>
-    <p class="stats-tag rv">Go-live is a project milestone. <span class="hl">Adoption is the business outcome.</span></p>
+    <p class="stats-tag rv">Go-live is a project milestone. <b>Adoption is the business outcome.</b></p>
   </div>
 </section>
 
-<!-- ============ 9. CASE STUDY ============ -->
-<section class="proof" id="case">
-  <div class="wrap">
-    <div class="proof-head rv">
-      <span class="eyebrow">Proof</span>
+<!-- ============ CASE STUDY ============ -->
+<section class="case" id="case">
+  <div class="split">
+    <div class="tile t-grey rv">
+      <span class="mono tile-label">Case Study</span>
       <h2>Three plants. Three thousand people. One new way of working.</h2>
+      <h3>Global manufacturer, SAP rollout across three facilities</h3>
+      <p class="intro">A global manufacturer moved off legacy systems onto SAP across three manufacturing facilities, touching more than 200 business functions and roughly 3,000 users. Leadership understood early that technical deployment alone would not decide the outcome.</p>
     </div>
-    <div class="case">
-      <div class="case-card rv">
-        <img class="case-card-bg" src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260910_064441_bfe66c47-ac3a-4a5b-8ee0-960108c61f00.png" alt="" aria-hidden="true">
-        <div class="case-card-overlay" aria-hidden="true"></div>
-        <div class="case-card-content">
-          <p class="cc-tag">Case Study</p>
-          <h3>Global manufacturer, SAP rollout across three facilities</h3>
-          <p class="cc-intro">A global manufacturer moved off legacy systems onto SAP across three manufacturing facilities, touching more than 200 business functions and roughly 3,000 users. Leadership understood early that technical deployment alone would not decide the outcome.</p>
-        </div>
+    <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_add35417-75dd-48ac-81a6-f9f27d8961f2.png" alt="Plant supervisor sharing progress with the team" loading="lazy"></div>
+  </div>
+  <div class="wrap work">
+    <span class="mono">The work</span>
+    <div class="work-grid">
+      <div class="work-item rv">
+        <svg viewBox="0 0 150 120" fill="none" stroke="#111" stroke-width="1.2"><rect x="10" y="60" width="34" height="46" fill="#FFF100"/><rect x="58" y="40" width="34" height="66"/><rect x="106" y="70" width="34" height="36"/><line x1="4" y1="106" x2="146" y2="106"/><circle cx="27" cy="30" r="10"/><path d="M27 40v14M75 18v16M123 48v16" stroke-dasharray="3 3"/><circle cx="75" cy="10" r="7"/><circle cx="123" cy="40" r="7"/></svg>
+        <p>Stakeholder analysis and change impact assessment across all three sites.</p>
       </div>
-      <div class="case-body rv">
-        <p class="cb-label">The work</p>
-        <div class="cb-item"><span class="pl">+</span><p>Stakeholder analysis and change impact assessment across all three sites.</p></div>
-        <div class="cb-item"><span class="pl">+</span><p>Organizational readiness assessments and sponsorship alignment.</p></div>
-        <div class="cb-item"><span class="pl">+</span><p>A communications and champion structure that gave the rollout local voices.</p></div>
-        <div class="cb-item"><span class="pl">+</span><p>Role-based training, hands-on workshops, process guides, job aids and nine learning videos.</p></div>
-        <div class="cb-item"><span class="pl">+</span><p>A phased go-live with structured hypercare support at each facility.</p></div>
-        <p class="case-outcome">All three facilities went live. More than 200 business functions were carried into the new environment, a virtual learning portal was left behind for ongoing knowledge transfer, and positive employee attitudes toward SAP adoption <b>improved by 10.5 percent</b> across the implementation, measured through workforce readiness and adoption surveys.</p>
-        <p class="case-tag">Technology transformations succeed when people, process and technology are addressed together.</p>
+      <div class="work-item rv">
+        <svg viewBox="0 0 150 120" fill="none" stroke="#111" stroke-width="1.2"><path d="M20 100 L20 30 L130 30 L130 100 Z"/><path d="M20 100 L130 100 L130 70 Q75 40 20 70 Z" fill="#FFF100"/><line x1="20" y1="30" x2="130" y2="30" stroke-dasharray="3 3"/><polyline points="40 60 60 50 80 56 100 42 120 38"/></svg>
+        <p>Organizational readiness assessments and sponsorship alignment.</p>
+      </div>
+      <div class="work-item rv">
+        <svg viewBox="0 0 150 120" fill="none" stroke="#111" stroke-width="1.2"><circle cx="75" cy="60" r="16" fill="#FFF100"/><circle cx="25" cy="25" r="10"/><circle cx="125" cy="25" r="10"/><circle cx="25" cy="95" r="10"/><circle cx="125" cy="95" r="10"/><line x1="33" y1="31" x2="62" y2="51"/><line x1="117" y1="31" x2="88" y2="51"/><line x1="33" y1="89" x2="62" y2="69"/><line x1="117" y1="89" x2="88" y2="69"/></svg>
+        <p>A communications and champion structure that gave the rollout local voices.</p>
+      </div>
+      <div class="work-item rv">
+        <svg viewBox="0 0 150 120" fill="none" stroke="#111" stroke-width="1.2"><rect x="18" y="20" width="114" height="72"/><rect x="18" y="20" width="114" height="18" fill="#FFF100"/><polygon points="66 50 66 78 90 64" /><line x1="50" y1="106" x2="100" y2="106"/><line x1="75" y1="92" x2="75" y2="106"/></svg>
+        <p>Role-based training, hands-on workshops, process guides, job aids and nine learning videos.</p>
+      </div>
+      <div class="work-item rv">
+        <svg viewBox="0 0 150 120" fill="none" stroke="#111" stroke-width="1.2"><polyline points="10 100 50 100 50 74 90 74 90 48 130 48 130 22"/><rect x="50" y="74" width="40" height="26" fill="#FFF100"/><rect x="90" y="48" width="40" height="52" fill="#FFF100" opacity=".55"/><line x1="10" y1="106" x2="140" y2="106"/><path d="M130 22 l-6 6 M130 22 l6 6"/></svg>
+        <p>A phased go-live with structured hypercare support at each facility.</p>
+      </div>
+    </div>
+    <div class="outcome-row rv">
+      <p>All three facilities went live. More than 200 business functions were carried into the new environment, a virtual learning portal was left behind for ongoing knowledge transfer, and positive employee attitudes toward SAP adoption <b>improved by 10.5 percent</b> across the implementation, measured through workforce readiness and adoption surveys.</p>
+      <p class="quote">Technology transformations succeed when people, process and technology are addressed together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo rv">
+      <img src="https://cdn.katalyst-crm.com/a/ab97c859-1dd7-25d3-99db-20a091f72061" alt="Rita Conerton, Founder of ZIPPER Change Consultancy">
+      <div class="cap"><b>Rita Conerton</b><span class="mono">Founder &amp; Principal</span></div>
+    </div>
+    <div class="rv">
+      <span class="mono eb">About</span>
+      <h2>About Rita Conerton.</h2>
+      <p class="fb-sub">Fifteen years between the project plan and the people.</p>
+      <p>I am an enterprise transformation and adoption strategist based in <b>Atlanta</b>, working with consulting partners across the United States. My background runs from marketing and strategic communications into project and program delivery, and then into organizational change on enterprise programs across manufacturing, supply chain, energy, healthcare, mining, financial services and technology.</p>
+      <div class="zip">
+        <div class="zip-body">
+          <p>That combination is the point. I understand what a delivery team is carrying, and I understand what a plant supervisor is afraid of. I have led change on SAP and MES implementations, supply chain modernization, cloud and digital programs, and initiatives reaching more than <b>3,500 employees</b> across global operations, working with executives, technical teams, plant leadership and frontline employees.</p>
+          <p>My credentials include <b>PMP, CCMP and PMI-CPMAI</b>, an AI consultant certification, a certified marketing consultant designation, an MBA from Georgia State University and a BBA from Mercer University.</p>
+        </div>
+        <button class="zip-toggle" type="button" aria-expanded="false"><span class="zip-track"><span class="zip-pull"><span class="zip-glyph"></span></span></span><span class="zip-label">Read more</span></button>
+      </div>
+      <p class="fb-note">I founded ZIPPER Change Consultancy to do one thing well: give consulting partners the adoption strategy that turns a technically sound build into a client success they can point to.</p>
+      <div class="badges" aria-label="Professional credentials">
+        <img src="https://cdn.katalyst-crm.com/a/78019e16-0621-c849-8f90-c44343674972" alt="Credential badge" loading="lazy">
+        <img src="https://cdn.katalyst-crm.com/a/caa305ee-2a5f-3014-f2c0-44b761bb8b8b" alt="Credential badge" loading="lazy">
+        <img src="https://cdn.katalyst-crm.com/a/b9295171-6e88-d959-cca3-4aff4b03b640" alt="Credential badge" loading="lazy">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 10. ABOUT RITA ============ -->
-<section class="people" id="about">
-  <div class="wrap">
-    <div class="founder-grid">
-      <div class="founder-card rv">
-        <img src="https://cdn.katalyst-crm.com/a/ab97c859-1dd7-25d3-99db-20a091f72061" alt="Rita Conerton, Founder of ZIPPER Change Consultancy">
-        <div class="fc-overlay">
-          <div class="fc-tag">Founder &amp; Principal</div>
-          <h3>Rita Conerton</h3>
-        </div>
-      </div>
-      <div class="founder-bio rv">
-        <span class="eyebrow">About</span>
-        <h2>About Rita Conerton.</h2>
-        <p class="fb-sub">Fifteen years between the project plan and the people.</p>
-        <p>I am an enterprise transformation and adoption strategist based in <b>Atlanta</b>, working with consulting partners across the United States. My background runs from marketing and strategic communications into project and program delivery, and then into organizational change on enterprise programs across manufacturing, supply chain, energy, healthcare, mining, financial services and technology.</p>
-        <p>That combination is the point. I understand what a delivery team is carrying, and I understand what a plant supervisor is afraid of. I have led change on SAP and MES implementations, supply chain modernization, cloud and digital programs, and initiatives reaching more than <b>3,500 employees</b> across global operations, working with executives, technical teams, plant leadership and frontline employees.</p>
-        <p>My credentials include <b>PMP, CCMP and PMI-CPMAI</b>, an AI consultant certification, a certified marketing consultant designation, an MBA from Georgia State University and a BBA from Mercer University.</p>
-        <p class="fb-note">I founded ZIPPER Change Consultancy to do one thing well: give consulting partners the adoption strategy that turns a technically sound build into a client success they can point to.</p>
-        <div class="fb-badges" aria-label="Professional credentials">
-          <img src="https://cdn.katalyst-crm.com/a/78019e16-0621-c849-8f90-c44343674972" alt="Credential badge" loading="lazy">
-          <img src="https://cdn.katalyst-crm.com/a/caa305ee-2a5f-3014-f2c0-44b761bb8b8b" alt="Credential badge" loading="lazy">
-          <img src="https://cdn.katalyst-crm.com/a/b9295171-6e88-d959-cca3-4aff4b03b640" alt="Credential badge" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 11. FINAL CTA ============ -->
+<!-- ============ FINAL CTA ============ -->
 <section class="cta" id="cta">
-  <img class="cta-bg" src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20260909_112335_a3924eb7-713d-49b6-8fc8-3d11286489b7.png" alt="" aria-hidden="true">
-  <div class="wrap">
-    <div class="cta-grid">
-      <span class="eyebrow rv">Let's Talk</span>
-      <div class="rv">
-        <h2>Make adoption part of the solution.</h2>
-        <p>I partner with AI consultants, technology firms and boutique consultancies that want stronger client outcomes without adding permanent overhead. If you have a proposal in progress, a rollout underway, or a client whose people are not moving, that is the conversation.</p>
-        <div class="cta-actions">
-          <a href="mailto:hello@zipperchange.com" class="btn btn-green">Book a Partner Call <span class="arr">→</span></a>
-          <a href="mailto:hello@zipperchange.com" class="btn btn-ghost-light">Send an Inquiry <span class="arr">→</span></a>
-        </div>
-      </div>
+  <div class="cta-copy rv">
+    <h2>Make adoption part of the solution.</h2>
+    <p>I partner with AI consultants, technology firms and boutique consultancies that want stronger client outcomes without adding permanent overhead. If you have a proposal in progress, a rollout underway, or a client whose people are not moving, that is the conversation.</p>
+    <div class="cta-actions">
+      <a href="mailto:hello@zipperchange.com" class="btn btn-black">Book a Partner Call →</a>
+      <a href="mailto:hello@zipperchange.com" class="btn btn-blue">Send an Inquiry</a>
     </div>
   </div>
+  <div class="cta-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_7f6022b4-175e-4544-a6b1-cbf0657319d3.png" alt="Partners shaking hands in a bright lobby" loading="lazy"></div>
 </section>
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <div class="wrap foot-inner">
-    <div>
-      <a class="logo" href="#" aria-label="ZIPPER Change Consultancy">
-        <img src="https://cdn.katalyst-crm.com/a/99bc47ef-8413-869a-4a6d-e2f5e4829ed6" alt="ZIPPER Change Consultancy">
-      </a>
-      <p class="foot-tag">Technology and people. Moving forward together. Human-side AI adoption strategy for consulting firms and their clients.</p>
+  <div class="wrap foot">
+    <a class="logo-box" href="#" aria-label="ZIPPER Change Consultancy"><img src="https://cdn.katalyst-crm.com/a/99bc47ef-8413-869a-4a6d-e2f5e4829ed6" alt="ZIPPER Change Consultancy"></a>
+    <div class="foot-tag">
+      <b>Technology and people. Moving forward together.</b>
+      <p>Human-side AI adoption strategy for consulting firms and their clients.</p>
     </div>
     <div class="foot-meta">
-      <p>Rita Conerton &nbsp;|&nbsp; <a href="mailto:hello@zipperchange.com">hello@zipperchange.com</a></p>
-      <p class="fm-tag">Atlanta, Georgia. Serving consulting partners across the United States.</p>
+      <p>Rita Conerton · <a href="mailto:hello@zipperchange.com">hello@zipperchange.com</a></p>
+      <p>Atlanta, Georgia. Serving consulting partners across the United States.</p>
     </div>
   </div>
-  <div class="wrap">
-    <div class="foot-bottom">
-      <div class="foot-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
-      <p>© 2026 ZIPPER Change Consultancy. A brand of RitaCo Niche Affiliate Solutions LLC. All rights reserved.</p>
+  <div class="foot-bar">
+    <div class="wrap">
+      <span>© 2026 ZIPPER Change Consultancy. A brand of RitaCo Niche Affiliate Solutions LLC. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
     </div>
   </div>
 </footer>
 
 <script>
-// Reveal on scroll
-const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// reveal
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.rv').forEach(el=>rio.observe(el));
 
-// Expandable service rows
-// Stat count-up — triggers when section scrolls into view, respects prefers-reduced-motion
+// mobile menu
 (function(){
-  const stats = document.querySelectorAll('.stat-num[data-count]');
-  if(!stats.length) return;
-
-  const format = (n, decimals, prefix, suffix) => {
-    const rounded = decimals > 0 ? n.toFixed(decimals) : Math.floor(n).toString();
-    const parts = rounded.split('.');
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return prefix + parts.join('.') + suffix;
-  };
-
-  const easeOut = t => 1 - Math.pow(1 - t, 3);
-
-  const animate = (el) => {
-    const target = parseFloat(el.dataset.count);
-    const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    const duration = 1800;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const p = Math.min((now - start) / duration, 1);
-      const v = target * easeOut(p);
-      el.textContent = format(v, decimals, prefix, suffix);
-      if(p < 1) requestAnimationFrame(tick);
-      else el.textContent = format(target, decimals, prefix, suffix);
-    };
-    requestAnimationFrame(tick);
-  };
-
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  stats.forEach(el => {
-    const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    if(reducedMotion){
-      el.textContent = format(parseFloat(el.dataset.count), decimals, prefix, suffix);
-    } else {
-      el.textContent = format(0, decimals, prefix, suffix);
-    }
-  });
-
-  if(reducedMotion) return;
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        animate(entry.target);
-        io.unobserve(entry.target);
-      }
-    });
-  }, {threshold: 0.4});
-
-  stats.forEach(el => io.observe(el));
-})();
-(function(){
-  const carousel = document.querySelector('.svc-carousel');
-  if(!carousel) return;
-  const track = carousel.querySelector('.svc-track');
-  const cards = carousel.querySelectorAll('.svc-card');
-  const dots  = carousel.querySelectorAll('.svc-dot');
-  const prev  = carousel.querySelector('.svc-prev');
-  const next  = carousel.querySelector('.svc-next');
-  const total = cards.length;
-  let idx = 0;
-
-  function goTo(n){
-    idx = Math.max(0, Math.min(total - 1, n));
-    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
-    dots.forEach((d, i) => {
-      const active = i === idx;
-      d.classList.toggle('active', active);
-      d.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
-    cards.forEach((c, i) => c.setAttribute('aria-hidden', i === idx ? 'false' : 'true'));
-    prev.disabled = idx === 0;
-    next.disabled = idx === total - 1;
-  }
-
-  prev.addEventListener('click', () => goTo(idx - 1));
-  next.addEventListener('click', () => goTo(idx + 1));
-  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
-
-  // Keyboard arrows when carousel is focused
-  carousel.setAttribute('tabindex', '0');
-  carousel.addEventListener('keydown', e => {
-    if(e.key === 'ArrowLeft'){ e.preventDefault(); goTo(idx - 1); }
-    if(e.key === 'ArrowRight'){ e.preventDefault(); goTo(idx + 1); }
-  });
-
-  // Touch swipe
-  let startX = 0, currentX = 0, dragging = false;
-  carousel.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX; currentX = startX; dragging = true;
-  }, {passive: true});
-  carousel.addEventListener('touchmove', e => {
-    if(dragging) currentX = e.touches[0].clientX;
-  }, {passive: true});
-  carousel.addEventListener('touchend', () => {
-    if(!dragging) return;
-    dragging = false;
-    const diff = startX - currentX;
-    if(Math.abs(diff) > 50) goTo(diff > 0 ? idx + 1 : idx - 1);
-  });
-
-  goTo(0);
+  const b=document.querySelector('.hamburger'),m=document.getElementById('mobile-menu');
+  const set=o=>{b.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');m.classList.toggle('open',o);m.setAttribute('aria-hidden',!o);document.body.classList.toggle('nav-open',o);};
+  b.addEventListener('click',()=>set(!m.classList.contains('open')));
+  m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false);});
+  matchMedia('(min-width:960px)').addEventListener('change',e=>{if(e.matches)set(false);});
 })();
 
-// Why We're Different accordion — single-open (opening one closes any other that was open)
-document.querySelectorAll('.adv-item').forEach(item=>{
-  item.addEventListener('toggle',()=>{
-    if(item.open){
-      document.querySelectorAll('.adv-item[open]').forEach(other=>{
-        if(other!==item) other.open=false;
-      });
-    }
-  });
-});
-
-// Hamburger / mobile menu (single source of truth)
+// zipper read-more
 (function(){
-  const btn = document.querySelector('.nav-hamburger');
-  const menu = document.getElementById('mobile-menu');
-  const body = document.body;
-  if(!btn || !menu) return;
-
-  const setOpen = (open) => {
-    btn.classList.toggle('is-open', open);
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    menu.classList.toggle('open', open);
-    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    body.classList.toggle('nav-open', open);
-  };
-
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    setOpen(!menu.classList.contains('open'));
+  const C=96;
+  document.querySelectorAll('.zip').forEach(z=>{
+    const body=z.querySelector('.zip-body'),t=z.querySelector('.zip-toggle'),l=t.querySelector('.zip-label');
+    const more=t.dataset.more||'Read more',less=t.dataset.less||'Read less';
+    body.style.maxHeight=C+'px';
+    t.addEventListener('click',()=>{
+      const o=!z.classList.contains('open');
+      z.classList.toggle('open',o);t.setAttribute('aria-expanded',o);l.textContent=o?less:more;
+      body.style.maxHeight=o?body.scrollHeight+'px':C+'px';
+    });
+    addEventListener('resize',()=>{if(z.classList.contains('open'))body.style.maxHeight=body.scrollHeight+'px';});
   });
+})();
 
-  // Tap any link inside menu → close
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+// method phases (single-open)
+(function(){
+  const ps=document.querySelectorAll('.phase');
+  const set=(p,o)=>{p.classList.toggle('open',o);p.querySelector('.ph-head').setAttribute('aria-expanded',o);const b=p.querySelector('.ph-body');b.style.maxHeight=o?b.scrollHeight+'px':'0px';};
+  ps.forEach(p=>{set(p,p.classList.contains('open'));p.querySelector('.ph-head').addEventListener('click',()=>{const o=!p.classList.contains('open');ps.forEach(x=>x!==p&&set(x,false));set(p,o);});});
+  addEventListener('resize',()=>ps.forEach(p=>p.classList.contains('open')&&set(p,true)));
+})();
 
-  // Escape key → close
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && menu.classList.contains('open')) setOpen(false); });
+// services carousel arrows (native swipe + scroll-snap)
+(function(){
+  const tr=document.querySelector('.svc-track');if(!tr)return;
+  const step=()=>tr.querySelector('.svc-card').getBoundingClientRect().width;
+  document.querySelector('.svc-prev').addEventListener('click',()=>tr.scrollBy({left:-step(),behavior:'smooth'}));
+  document.querySelector('.svc-next').addEventListener('click',()=>tr.scrollBy({left:step(),behavior:'smooth'}));
+})();
 
-  // Tap outside (on nav backdrop) → close
-  document.addEventListener('click', (e) => {
-    if(!menu.classList.contains('open')) return;
-    if(menu.contains(e.target) || btn.contains(e.target)) return;
-    setOpen(false);
-  });
-
-  // Resize to desktop → close (keeps state consistent)
-  const mq = window.matchMedia('(min-width: 960px)');
-  const onChange = (e) => { if(e.matches) setOpen(false); };
-  mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
+// stat count-up
+(function(){
+  const els=document.querySelectorAll('.stat-num[data-count]');
+  const fmt=(n,d,p,s)=>{const r=d?n.toFixed(d):Math.floor(n).toString();const parts=r.split('.');parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',');return p+parts.join('.')+s;};
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  els.forEach(el=>{const d=+(el.dataset.decimals||0),p=el.dataset.prefix||'',s=el.dataset.suffix||'';el.textContent=fmt(reduce?+el.dataset.count:0,d,p,s);});
+  if(reduce)return;
+  const o=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;o.unobserve(e.target);const el=e.target,t=+el.dataset.count,d=+(el.dataset.decimals||0),p=el.dataset.prefix||'',s=el.dataset.suffix||'',st=performance.now();
+    const tick=now=>{const k=Math.min((now-st)/1800,1);el.textContent=fmt(t*(1-Math.pow(1-k,3)),d,p,s);if(k<1)requestAnimationFrame(tick);else el.textContent=fmt(t,d,p,s);};requestAnimationFrame(tick);}),{threshold:.4});
+  els.forEach(el=>o.observe(el));
 })();
 </script>
 </body>
