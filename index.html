@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js');</script>
 <title>ZIPPER Change Consultancy — Human-Side AI Adoption Strategy</title>
 <meta name="description" content="Adoption strategy for AI and technology consultancies whose clients need more than a successful go-live.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,6 +80,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-0.025em;line-height:1.08;text-wrap:bala
 @media(min-width:900px){.nav-inner{padding-left:max(var(--gutter),calc((100vw - var(--wrap))/4 + var(--gutter)));padding-right:max(var(--gutter),calc((100vw - var(--wrap))/2 + var(--gutter)));}}
 .logo{display:inline-flex;align-items:center;}
 .logo img{height:108px;width:auto;filter:brightness(0) invert(1);}
+@media(max-width:959px){.logo img{height:76px;}}
 @media(min-width:960px){.logo img{height:128px;}}
 .nav-links{display:none;}
 @media(min-width:960px){
@@ -99,19 +101,39 @@ h1,h2,h3{font-weight:400;letter-spacing:-0.025em;line-height:1.08;text-wrap:bala
 .hamburger.is-open span:nth-child(2){opacity:0;}
 .hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 @media(min-width:960px){.hamburger{display:none;}}
-.mobile-menu{position:fixed;inset:0;background:var(--y);z-index:40;padding:110px 26px 40px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;}
+.mobile-menu{position:fixed;inset:0;height:100dvh;background:var(--y);z-index:40;padding:110px 26px 40px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;}
 .mobile-menu.open{transform:none;}
 .mobile-menu a.mm{font-size:28px;font-weight:600;letter-spacing:-0.02em;padding:16px 0;border-bottom:1.5px solid var(--ink);min-height:56px;}
 .mobile-menu .btn{margin-top:30px;}
 @media(min-width:960px){.mobile-menu{display:none;}}
+/* keep the hamburger/close control visible above the open menu */
+body.nav-open .nav{z-index:50;}
+
+/* mobile: fixed header so the nav survives the full scroll length, transparent over the hero,
+   solid/blurred once scrolled past it */
+@media(max-width:959px){
+  .nav{position:fixed;background:transparent;transition:background .25s ease,backdrop-filter .25s ease,padding .25s ease;}
+  .nav.scrolled{background:rgba(10,14,40,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+  .nav.scrolled .nav-inner{padding-top:12px;padding-bottom:12px;}
+  .nav.scrolled .logo img{height:40px;}
+  .nav.scrolled .hamburger{width:40px;height:40px;}
+  /* offset anchor-link jumps so the fixed bar doesn't cover the target heading */
+  [id]{scroll-margin-top:76px;}
+}
 
 /* ============ HERO (full-bleed image) ============ */
-.hero{position:relative;min-height:600px;display:flex;align-items:center;overflow:hidden;}
-@media(min-width:900px){.hero{min-height:100vh;}}
+.hero{position:relative;min-height:600px;min-height:100svh;display:flex;align-items:center;overflow:hidden;}
+@media(min-width:900px){.hero{min-height:100vh;min-height:100svh;}}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% center;z-index:0;}
 .hero-scrim{position:absolute;inset:0;z-index:1;background:
   linear-gradient(90deg, rgba(10,22,90,.92) 0%, rgba(13,28,110,.78) 38%, rgba(13,28,110,.25) 70%, rgba(13,28,110,.05) 100%),
   linear-gradient(0deg, rgba(8,18,76,.55) 0%, rgba(8,18,76,0) 40%);}
+@media(max-width:599px){
+  /* stronger, more even overlay on mobile so white hero copy stays readable over the photo */
+  .hero-scrim{background:
+    linear-gradient(180deg, rgba(8,16,70,.6) 0%, rgba(8,16,70,.45) 35%, rgba(8,16,70,.8) 100%),
+    linear-gradient(90deg, rgba(10,22,90,.88) 0%, rgba(13,28,110,.62) 100%);}
+}
 .hero-inner{position:relative;z-index:2;color:#fff;padding:120px var(--gutter) 150px;width:100%;}
 @media(min-width:900px){.hero-inner{padding:150px var(--gutter) 180px;padding-left:max(var(--gutter),calc((100vw - var(--wrap))/4 + var(--gutter)));}}
 .hero-kicker{margin-bottom:26px;color:var(--y);}
@@ -291,7 +313,9 @@ h1,h2,h3{font-weight:400;letter-spacing:-0.025em;line-height:1.08;text-wrap:bala
 .stats-photo img{width:100%;height:100%;object-fit:cover;}
 .stat-grid{display:grid;grid-template-columns:minmax(0,1fr);}
 @media(min-width:600px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
-@media(min-width:1024px){.stat-grid{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:-110px;position:relative;z-index:2;margin-left:calc(-1 * min(6vw, 130px));margin-right:calc(-1 * min(6vw, 130px));}}
+@media(min-width:1024px){.stat-grid{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:-110px;position:relative;z-index:2;}}
+/* bleed beyond .wrap only once there's enough viewport to spare — avoids 1024-1279px horizontal overflow */
+@media(min-width:1280px){.stat-grid{margin-left:calc(-1 * min(6vw, 130px));margin-right:calc(-1 * min(6vw, 130px));}}
 .stat{padding:34px 24px 30px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;}
 .stat-num{font-size:clamp(46px,4.6vw,72px);font-weight:300;letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap;}
 .stat-label{font-size:15px;line-height:1.5;max-width:240px;margin-top:18px;}
@@ -329,7 +353,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-0.025em;line-height:1.08;text-wrap:bala
 .about-photo img{position:relative;z-index:1;width:100%;height:auto;object-fit:cover;}
 .about-photo .cap{position:relative;z-index:1;background:var(--blue);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;gap:12px;align-items:center;}
 .about-photo .cap b{font-size:17px;}
-.about-photo .cap .mono{color:var(--y);font-size:10.5px;}
+.about-photo .cap .mono{color:var(--y);font-size:12px;}
 .about .mono.eb{display:block;margin-bottom:20px;}
 .about h2{font-size:clamp(30px,3.4vw,46px);margin-bottom:12px;}
 .about .fb-sub{font-size:clamp(18px,2vw,22px);font-weight:700;margin-bottom:26px;}
@@ -360,20 +384,41 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
 .foot-tag b{display:block;font-size:22px;letter-spacing:-0.01em;margin-bottom:8px;color:var(--y);}
 .foot-tag p{color:rgba(255,255,255,.8);font-size:15px;line-height:1.6;}
 .foot-meta{font-size:15px;line-height:1.8;color:rgba(255,255,255,.9);}
-.foot-meta a{color:#fff;border-bottom:2px solid var(--y);}
+.foot-meta a{color:#fff;border-bottom:2px solid var(--y);position:relative;display:inline-block;}
 .foot-meta a:hover{color:var(--y);}
 .foot-bar{background:rgba(0,0,0,.22);color:#fff;border-top:1px solid rgba(255,255,255,.18);}
-.foot-bar .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;padding-top:18px;padding-bottom:18px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.75);}
+.foot-bar .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;padding-top:18px;padding-bottom:18px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:rgba(255,255,255,.75);}
+.foot-bar a{position:relative;display:inline-block;}
 .foot-bar a:hover{color:var(--y);}
+/* enlarge the tap target to >=44px without changing the visible link size */
+.foot-meta a::after,.foot-bar a::after{content:"";position:absolute;left:-6px;right:-6px;top:50%;height:44px;min-height:44px;transform:translateY(-50%);}
 
-/* reveal */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease;}
-.rv.in{opacity:1;transform:none;}
+/* reveal — visible by default (no-JS fallback); JS marks <html class="js"> and only then
+   does the fade-up + IntersectionObserver reveal apply */
+.rv{opacity:1;transform:none;}
+html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease;}
+html.js .rv.in{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
-  .rv{opacity:1;transform:none;transition:none;}
+  .rv,html.js .rv{opacity:1!important;transform:none!important;transition:none!important;}
   .track{animation:none;}
   .zip-body,.zip-pull,.ph-body,.ph-pull,.tile-img img{transition:none;}
+}
+
+/* mobile: shorten long section padding and decorative image tiles so the page doesn't
+   feel endlessly long on small screens; desktop values above are untouched */
+@media(max-width:599px){
+  .problem{padding-top:64px;}
+  .services{padding:64px 0 72px;margin-top:64px;}
+  .method{padding-top:64px;}
+  .diff{padding-top:64px;}
+  .belief{margin-top:64px;}
+  .stats{padding-top:64px;}
+  .case{padding-top:64px;}
+  .about{padding:72px 0 64px;}
+  footer{padding-top:56px;}
+  .tile-img{min-height:200px;}
+  .split .tile-img{min-height:220px;}
 }
 </style>
 </head>
@@ -408,7 +453,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
 
 <!-- ============ HERO ============ -->
 <header class="hero">
-  <img class="hero-bg" src="https://cdn.katalyst-crm.com/a/a476da95-3d74-ac56-af1c-96397d101cb0" alt="Consultant leading a strategy session">
+  <img class="hero-bg" src="https://cdn.katalyst-crm.com/a/a476da95-3d74-ac56-af1c-96397d101cb0" alt="Consultant leading a strategy session" fetchpriority="high">
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-inner">
     <p class="mono hero-kicker">Human-Side AI Adoption Strategy</p>
@@ -517,7 +562,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
 
       <div class="svc-track rv" tabindex="0" aria-label="Services">
         <article class="svc-card">
-          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_09960e96-f720-4ff4-976f-a9dce2edd2de.png" alt="Discovery interview" loading="lazy"><span class="mono svc-tag">01 · Assessment</span></div>
+          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_09960e96-f720-4ff4-976f-a9dce2edd2de.png" alt="Discovery interview" loading="lazy" decoding="async"><span class="mono svc-tag">01 · Assessment</span></div>
           <div class="svc-body">
             <span class="tick"></span>
             <h3>AI Adoption Readiness Assessment</h3>
@@ -540,7 +585,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
         </article>
 
         <article class="svc-card">
-          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_768e78f4-8e4d-4bcf-b596-9680e70530ee.png" alt="Team planning a rollout roadmap" loading="lazy"><span class="mono svc-tag">02 · Blueprint</span></div>
+          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_768e78f4-8e4d-4bcf-b596-9680e70530ee.png" alt="Team planning a rollout roadmap" loading="lazy" decoding="async"><span class="mono svc-tag">02 · Blueprint</span></div>
           <div class="svc-body">
             <span class="tick"></span>
             <h3>Adoption Rollout Blueprint</h3>
@@ -564,7 +609,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
         </article>
 
         <article class="svc-card">
-          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_0e2b4c34-4b9c-43ad-b16d-689453939003.png" alt="Senior advisor coaching a manager" loading="lazy"><span class="mono svc-tag">03 · Advisory</span></div>
+          <div class="svc-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_0e2b4c34-4b9c-43ad-b16d-689453939003.png" alt="Senior advisor coaching a manager" loading="lazy" decoding="async"><span class="mono svc-tag">03 · Advisory</span></div>
           <div class="svc-body">
             <span class="tick"></span>
             <h3>Advisory Partner</h3>
@@ -593,7 +638,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
 
 <!-- ============ RISK CHECK ============ -->
 <section class="split risk" id="risk-check">
-  <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065721_242d94b2-f255-4aeb-aeb8-2f85dd0d49bc.png" alt="Consultant reviewing a readiness checklist" loading="lazy"></div>
+  <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065721_242d94b2-f255-4aeb-aeb8-2f85dd0d49bc.png" alt="Consultant reviewing a readiness checklist" loading="lazy" decoding="async"></div>
   <div class="tile t-grey rv">
     <span class="mono tile-label">Before your next proposal</span>
     <p class="kicker">The AI Adoption Risk Check</p>
@@ -608,7 +653,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
 <section class="method" id="method">
   <div class="split">
     <div class="tile tile-img rv">
-      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_35d74c4e-cd5e-4694-afbd-bd4b6a213a17.png" alt="Two teams celebrating together across a table" loading="lazy">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_35d74c4e-cd5e-4694-afbd-bd4b6a213a17.png" alt="Two teams celebrating together across a table" loading="lazy" decoding="async">
       <p class="img-tag">A zipper has two sides, and it only works when both move forward together.</p>
     </div>
     <div class="tile t-white rv">
@@ -639,7 +684,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
 <section class="diff" id="different">
   <div class="wrap">
     <div class="diff-grid">
-      <div class="tile tile-img d-photo rv"><img src="https://cdn.katalyst-crm.com/a/bf0c3ae6-067f-a224-2b7f-cced0c54e706" alt="Working alongside a delivery team" loading="lazy"></div>
+      <div class="tile tile-img d-photo rv"><img src="https://cdn.katalyst-crm.com/a/bf0c3ae6-067f-a224-2b7f-cced0c54e706" alt="Working alongside a delivery team" loading="lazy" decoding="async"></div>
       <div class="tile t-yellow d-head rv">
         <span class="mono">Why We're Different</span>
         <div>
@@ -662,20 +707,20 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
         <h3>No template change plan.</h3>
         <p>Standard playbooks get applied to every client and are customized to them. A plant floor, a finance team and a procurement group need different strategies that still add up to one rollout.</p>
       </div>
-      <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_d6349884-ed47-4330-96e1-d1b7f59c8829.png" alt="Employees laughing during a training workshop" loading="lazy"></div>
+      <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_d6349884-ed47-4330-96e1-d1b7f59c8829.png" alt="Employees laughing during a training workshop" loading="lazy" decoding="async"></div>
       <div class="tile t-yellow d-item rv">
         <svg class="d-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l1.5 1.5L8 5"/><path d="M4 12l1.5 1.5L8 10"/><path d="M4 18l1.5 1.5L8 16"/><line x1="11" y1="6" x2="20" y2="6"/><line x1="11" y1="12" x2="20" y2="12"/><line x1="11" y1="18" x2="16" y2="18"/><path d="M17.5 16l2.5 2-2.5 2"/></svg>
         <h3>Strategy that names the actions.</h3>
         <p>Every engagement ends with a sequence, owners and timing. Not a report that gets read once and filed.</p>
       </div>
-      <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_0ac48456-dc24-4382-9fc5-d273273486c9.png" alt="Consulting team smiling around a laptop" loading="lazy"></div>
+      <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_0ac48456-dc24-4382-9fc5-d273273486c9.png" alt="Consulting team smiling around a laptop" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
 
 <!-- ============ BELIEF ============ -->
 <section class="split belief" id="belief">
-  <div class="tile tile-img rv"><img src="https://cdn.katalyst-crm.com/a/c1360766-c692-5204-19e9-e13270a6c30c" alt="" loading="lazy"></div>
+  <div class="tile tile-img rv"><img src="https://cdn.katalyst-crm.com/a/c1360766-c692-5204-19e9-e13270a6c30c" alt="" loading="lazy" decoding="async"></div>
   <div class="tile t-blue rv">
     <span class="mono">Why This Exists</span>
     <h2>Technology and people have to move forward together.</h2>
@@ -694,12 +739,12 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
 <!-- ============ STATS ============ -->
 <section class="stats">
   <div class="wrap">
-    <div class="stats-photo rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_f745f91e-a204-4d12-afde-2678caff5721.png" alt="Bright modern manufacturing facility" loading="lazy"></div>
+    <div class="stats-photo rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_f745f91e-a204-4d12-afde-2678caff5721.png" alt="Bright modern manufacturing facility" loading="lazy" decoding="async"></div>
     <div class="stat-grid">
-      <div class="stat t-yellow rv"><span class="stat-num" data-count="3">0</span><p class="stat-label">Manufacturing facilities taken live</p></div>
-      <div class="stat t-white rv" style="border:1px solid var(--line)"><span class="stat-num" data-count="3000">0</span><p class="stat-label">Users prepared for a new way of working</p></div>
-      <div class="stat t-grey rv"><span class="stat-num" data-count="200" data-suffix="+">0</span><p class="stat-label">Business functions carried across</p></div>
-      <div class="stat t-blue rv"><span class="stat-num" data-count="10.5" data-decimals="1" data-prefix="+" data-suffix="%">0</span><p class="stat-label">Improvement in employee attitudes toward adoption</p></div>
+      <div class="stat t-yellow rv"><span class="stat-num" data-count="3">3</span><p class="stat-label">Manufacturing facilities taken live</p></div>
+      <div class="stat t-white rv" style="border:1px solid var(--line)"><span class="stat-num" data-count="3000">3,000</span><p class="stat-label">Users prepared for a new way of working</p></div>
+      <div class="stat t-grey rv"><span class="stat-num" data-count="200" data-suffix="+">200+</span><p class="stat-label">Business functions carried across</p></div>
+      <div class="stat t-blue rv"><span class="stat-num" data-count="10.5" data-decimals="1" data-prefix="+" data-suffix="%">+10.5%</span><p class="stat-label">Improvement in employee attitudes toward adoption</p></div>
     </div>
     <p class="stats-tag rv">Go-live is a project milestone. <b>Adoption is the business outcome.</b></p>
   </div>
@@ -714,7 +759,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
       <h3>Global manufacturer, SAP rollout across three facilities</h3>
       <p class="intro">A global manufacturer moved off legacy systems onto SAP across three manufacturing facilities, touching more than 200 business functions and roughly 3,000 users. Leadership understood early that technical deployment alone would not decide the outcome.</p>
     </div>
-    <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_add35417-75dd-48ac-81a6-f9f27d8961f2.png" alt="Plant supervisor sharing progress with the team" loading="lazy"></div>
+    <div class="tile tile-img rv"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_add35417-75dd-48ac-81a6-f9f27d8961f2.png" alt="Plant supervisor sharing progress with the team" loading="lazy" decoding="async"></div>
   </div>
   <div class="wrap work">
     <span class="mono">The work</span>
@@ -768,9 +813,9 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
       </div>
       <p class="fb-note">I founded ZIPPER Change Consultancy to do one thing well: give consulting partners the adoption strategy that turns a technically sound build into a client success they can point to.</p>
       <div class="badges" aria-label="Professional credentials">
-        <img src="https://cdn.katalyst-crm.com/a/78019e16-0621-c849-8f90-c44343674972" alt="Credential badge" loading="lazy">
-        <img src="https://cdn.katalyst-crm.com/a/caa305ee-2a5f-3014-f2c0-44b761bb8b8b" alt="Credential badge" loading="lazy">
-        <img src="https://cdn.katalyst-crm.com/a/b9295171-6e88-d959-cca3-4aff4b03b640" alt="Credential badge" loading="lazy">
+        <img src="https://cdn.katalyst-crm.com/a/78019e16-0621-c849-8f90-c44343674972" alt="Credential badge" loading="lazy" decoding="async">
+        <img src="https://cdn.katalyst-crm.com/a/caa305ee-2a5f-3014-f2c0-44b761bb8b8b" alt="Credential badge" loading="lazy" decoding="async">
+        <img src="https://cdn.katalyst-crm.com/a/b9295171-6e88-d959-cca3-4aff4b03b640" alt="Credential badge" loading="lazy" decoding="async">
       </div>
     </div>
   </div>
@@ -786,7 +831,7 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
       <a href="mailto:hello@zipperchange.com" class="btn btn-blue">Send an Inquiry</a>
     </div>
   </div>
-  <div class="cta-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_7f6022b4-175e-4544-a6b1-cbf0657319d3.png" alt="Partners shaking hands in a bright lobby" loading="lazy"></div>
+  <div class="cta-img"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_35NBuSfIPglHIOMZxxqoxDRFcyj/hf_20261002_065720_7f6022b4-175e-4544-a6b1-cbf0657319d3.png" alt="Partners shaking hands in a bright lobby" loading="lazy" decoding="async"></div>
 </section>
 
 <!-- ============ FOOTER ============ -->
@@ -811,18 +856,32 @@ footer{background:var(--blue);color:#fff;padding:72px 0 0;}
 </footer>
 
 <script>
-// reveal
-const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.08});
+// reveal — low threshold + a generous bottom rootMargin so fast scrolls and anchor jumps
+// trigger the fade-in before the section is fully in view, rather than leaving it blank
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}}),{threshold:.01,rootMargin:'0px 0px 15% 0px'});
 document.querySelectorAll('.rv').forEach(el=>rio.observe(el));
 
 // mobile menu
 (function(){
   const b=document.querySelector('.hamburger'),m=document.getElementById('mobile-menu');
-  const set=o=>{b.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');m.classList.toggle('open',o);m.setAttribute('aria-hidden',!o);document.body.classList.toggle('nav-open',o);};
+  const set=o=>{
+    const wasOpen=m.classList.contains('open');
+    b.classList.toggle('is-open',o);b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');
+    m.classList.toggle('open',o);m.setAttribute('aria-hidden',!o);document.body.classList.toggle('nav-open',o);
+    if(!o&&wasOpen)b.focus();
+  };
   b.addEventListener('click',()=>set(!m.classList.contains('open')));
   m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
   document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false);});
   matchMedia('(min-width:960px)').addEventListener('change',e=>{if(e.matches)set(false);});
+})();
+
+// mobile header: transparent over the hero, solid/blurred once scrolled past it
+(function(){
+  const nav=document.querySelector('.nav');
+  const setScrolled=()=>nav.classList.toggle('scrolled',window.scrollY>24);
+  setScrolled();
+  addEventListener('scroll',setScrolled,{passive:true});
 })();
 
 // zipper read-more
@@ -857,14 +916,16 @@ document.querySelectorAll('.rv').forEach(el=>rio.observe(el));
   document.querySelector('.svc-next').addEventListener('click',()=>tr.scrollBy({left:step(),behavior:'smooth'}));
 })();
 
-// stat count-up
+// stat count-up — the HTML already holds the real final value, so if this script
+// never runs (or the observer never fires) the correct numbers are still shown.
+// Only when a stat scrolls into view do we reset to 0 and animate up to it.
 (function(){
   const els=document.querySelectorAll('.stat-num[data-count]');
-  const fmt=(n,d,p,s)=>{const r=d?n.toFixed(d):Math.floor(n).toString();const parts=r.split('.');parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',');return p+parts.join('.')+s;};
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  els.forEach(el=>{const d=+(el.dataset.decimals||0),p=el.dataset.prefix||'',s=el.dataset.suffix||'';el.textContent=fmt(reduce?+el.dataset.count:0,d,p,s);});
   if(reduce)return;
+  const fmt=(n,d,p,s)=>{const r=d?n.toFixed(d):Math.floor(n).toString();const parts=r.split('.');parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',');return p+parts.join('.')+s;};
   const o=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;o.unobserve(e.target);const el=e.target,t=+el.dataset.count,d=+(el.dataset.decimals||0),p=el.dataset.prefix||'',s=el.dataset.suffix||'',st=performance.now();
+    el.textContent=fmt(0,d,p,s);
     const tick=now=>{const k=Math.min((now-st)/1800,1);el.textContent=fmt(t*(1-Math.pow(1-k,3)),d,p,s);if(k<1)requestAnimationFrame(tick);else el.textContent=fmt(t,d,p,s);};requestAnimationFrame(tick);}),{threshold:.4});
   els.forEach(el=>o.observe(el));
 })();
